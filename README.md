@@ -29,6 +29,6 @@ Insert screenshots of your app here. Use markdown or HTML image tags.
 
 
 # 🔗 Links
-API Documentation - Detailed API documentation.
-Project Roadmap - Upcoming features and enhancements.
+- **API Documentation - Detailed API documentation.
+- **Project Roadmap - Upcoming features and enhancements.
 
