@@ -24,11 +24,11 @@ Planix is your go-to app for effortlessly organizing any event, from birthday pa
    ```sh
    npm start
 
-📸 Screenshots
+# 📸 Screenshots
 Insert screenshots of your app here. Use markdown or HTML image tags.
 
 
-🔗 Links
+# 🔗 Links
 API Documentation - Detailed API documentation.
 Project Roadmap - Upcoming features and enhancements.
 
