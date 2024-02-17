@@ -5,8 +5,7 @@ export default function HorizontalLine() {
   return (
     <View
       style={{
-        marginVertical: 20,
-        borderBottomColor: colors.primaryColor,
+        marginVertical: 5,
         borderBottomWidth: StyleSheet.hairlineWidth,
       }}
     />

@@ -1,27 +1,41 @@
 import { StyleSheet } from 'react-native';
+import * as Font from 'expo-font';
 
 const colors = {
-  primaryColor: '#db1d28',
-  secondaryColor: '#2ecc71',
+  // primaryColor: '#f8380e',
+  primaryColor: '#33bafe',
+  successColor: '#2ecc71',
   textColor: '#f5f6fc',
-  cardColor: '#2d2d35',
-  backgroundColor: '#1a1b20',
+  // cardTopColor: '#1a1b1d',
+  // cardBottomColor: '#1d1d1e',
+  cardColor: '#1a1b1d',
+  cardBorderColor: '#505256',
+  topBackgroundColor: '#2b2d31',
+  bottomBackgroundColor: '#171718',
+  bottomTabsColor: '#131313',
+  borderColor: '#343435',
+  inputBackgroundColor: '#2b2d31',
+  inputBorderColor: '#343435',
+};
+const loadFonts = async () => {
+  await Font.loadAsync({
+    'Kanit-Regular': require('../assets/Kanit/Kanit-Regular.ttf'),
+    'Kanit-Bold': require('../assets/Kanit/Kanit-Bold.ttf'),
+  });
 };
 
 const fonts = {
-  regular: 'Roboto-Regular',
-  bold: 'Roboto-Bold',
+  regular: 'Kanit-Regular',
+  bold: 'Kanit-Bold',
 };
 
 const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundColor,
     padding: 16,
   },
   text: {
-    fontFamily: fonts.regular,
-    fontSize: 16,
+    fontSize: 18,
     color: colors.textColor,
   },
   button: {
