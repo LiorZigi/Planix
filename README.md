@@ -1,5 +1,6 @@
-# ![Planix](https://github.com/LiorZigi/Planix/assets/101927234/80e59244-b12c-49f2-b7bc-fdacc775f19c)
-
+<p align="center">
+  <img src="assets/Planix.png" alt="Planix Logo" width="200"/>
+</p>
 
 <p align="center">
 Planix is your go-to app for effortlessly organizing any event, from birthday parties to barbecues. Designed to simplify event logistics, Planix enables you to create a group, invite members, and collaboratively manage the essentials list. Say goodbye to the hassle of planning and hello to more memorable gatherings!
@@ -16,19 +17,23 @@ Planix is your go-to app for effortlessly organizing any event, from birthday pa
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/YOUR_GITHUB_USERNAME/planix.git
+   git clone https://github.com/LiorZigi/Planix.git
+   ```
 2. Install NPM packages
    ```sh
     npm install
+   ```
 3. Start the application
    ```sh
    npm start
+   ```
 
 # 📸 Screenshots
-Insert screenshots of your app here. Use markdown or HTML image tags.
 
-
+<p align="center">
+  <img src="assets/simulator_screenshot_2BDF2BCC-86BF-466E-9689-3CE8528B9771.png" alt="Planix Logo" width="200" height="200"/>
+</p>
 # 🔗 Links
+
 - **API Documentation** - Detailed API documentation.
 - **Project Roadmap** - Upcoming features and enhancements.
-
