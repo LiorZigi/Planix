@@ -2,7 +2,7 @@
   <img src="assets/Planix.png" alt="Planix Logo" width="200"/>
 </p>
 
-<p align="center">
+<p>
 Planix is your go-to app for effortlessly organizing any event, from birthday parties to barbecues. Designed to simplify event logistics, Planix enables you to create a group, invite members, and collaboratively manage the essentials list. Say goodbye to the hassle of planning and hello to more memorable gatherings!
 </p>
 
@@ -31,7 +31,7 @@ Planix is your go-to app for effortlessly organizing any event, from birthday pa
 # 📸 Screenshots
 
 <p align="center">
-  <img src="assets/simulator_screenshot_2BDF2BCC-86BF-466E-9689-3CE8528B9771.png" alt="Planix Logo" width="200" height="200"/>
+  <img src="assets/simulator_screenshot_2BDF2BCC-86BF-466E-9689-3CE8528B9771.png" alt="Planix Logo" width="200"/>
 </p>
 # 🔗 Links
 
