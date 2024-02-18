@@ -8,6 +8,7 @@ interface InputProps {
   placeholder?: string;
   keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
   secureTextEntry?: boolean;
+  textAlign?: 'left' | 'right' | 'center';
   style?: object;
 }
 
@@ -17,6 +18,7 @@ const Input = ({
   placeholder,
   keyboardType = 'default',
   secureTextEntry = false,
+  textAlign,
   style,
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -36,6 +38,7 @@ const Input = ({
       placeholder={placeholder}
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
+      textAlign={textAlign}
       onFocus={handleFocus}
       onBlur={handleBlur}
       style={[styles.input, isFocused && styles.focused, style]}

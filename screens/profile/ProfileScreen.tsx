@@ -1,6 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { colors, globalStyles } from '../../styles/constants';
-import HorizontalLine from './components/HorizontalLine';
 import SectionButton from './components/SectionButton';
 import BackgroundGradient from '../../styles/GradientBackground';
 import Animated, { FadeInDown } from 'react-native-reanimated';
