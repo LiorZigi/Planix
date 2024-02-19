@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Animated, Pressable } from 'react-native';
-import { colors } from '../../styles/constants';
+import { colors } from '../../../styles/constants';
 
 interface CheckboxProps {
   checked: boolean;

@@ -1,10 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NewEventScreen from './NewEventScreen';
-import Events from './components/Events';
-import { useSelector } from 'react-redux';
-import BarbicueScreen from './components/BarbicueModal';
 import BarbicueModal from './components/BarbicueModal';
 import { colors } from '../../styles/constants';
+import BirthdayModal from './components/BirthdayModal';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +20,16 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'modal',
           headerTitle: 'Barbicue',
+          headerTitleStyle: { color: colors.textColor },
+          headerStyle: { backgroundColor: colors.topBackgroundColor },
+        }}
+      />
+      <Stack.Screen
+        name="Birthday"
+        component={BirthdayModal}
+        options={{
+          presentation: 'modal',
+          headerTitle: 'Birthday',
           headerTitleStyle: { color: colors.textColor },
           headerStyle: { backgroundColor: colors.topBackgroundColor },
         }}

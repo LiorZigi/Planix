@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { eventRoutesSlice } from './slices/eventRoutes';
 import { membersCounterSlice } from './slices/membersCounter';
 
 export interface RootState {

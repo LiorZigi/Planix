@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Platform } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
-import { colors } from '../../styles/constants';
+import { colors } from '../../../styles/constants';
 
 interface PlusButtonProps {
   onPress: () => void;

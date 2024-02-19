@@ -21,7 +21,7 @@ export default function NewEventScreen({ navigation }: NewEventScreenProps) {
           source={require('../../assets/Planix.png')}
         ></Image>
 
-        <Text style={styles.text}>Choose what kind of event</Text>
+        <Text style={styles.text}></Text>
         <Events navigation={navigation} />
       </View>
     </BackgroundGradient>

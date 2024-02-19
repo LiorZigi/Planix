@@ -3,7 +3,7 @@ import Animated, {
   FadeInRight,
   FadeInUp,
 } from 'react-native-reanimated';
-import Card from '../../../core/components/Card';
+import Card from '../../../core/components/atoms/Card';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, globalStyles } from '../../../styles/constants';
 import { Octicons } from '@expo/vector-icons';

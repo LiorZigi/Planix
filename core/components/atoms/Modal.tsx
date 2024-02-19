@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, View, Text, StyleSheet, Pressable } from 'react-native';
-import { globalStyles } from '../../styles/constants';
+import { globalStyles } from '../../../styles/constants';
 
 interface ModalProps {
   visible: boolean;

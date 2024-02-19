@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
-import BackgroundGradient from '../../styles/GradientBackground';
-import { colors } from '../../styles/constants';
+import BackgroundGradient from '../../../styles/GradientBackground';
+import { colors } from '../../../styles/constants';
 
 interface CardProps {
   children: React.ReactNode;

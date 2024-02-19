@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
-import PlusButton from './PlusButton';
-import MinusButton from './MinusButton';
-import { colors } from '../../styles/constants';
+import { View, Text, Button, TextInput } from 'react-native';
+import PlusButton from '../atoms/PlusButton';
+import MinusButton from '../atoms/MinusButton';
+import { colors } from '../../../styles/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import membersCounter, {
   decrement,
   increment,
-} from '../../store/slices/membersCounter';
-import { RootState } from '../../store/store';
+} from '../../../store/slices/membersCounter';
+import { RootState } from '../../../store/store';
+import Input from '../atoms/Input';
 
 interface NumberPickerProps {
   value: number;
@@ -31,7 +32,7 @@ const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
   return (
     <View style={[{ flexDirection: 'row' }, style]}>
       <MinusButton onPress={decrementNumber} />
-      <Text style={{ color: colors.textColor }}>{number}</Text>
+      <Input value={number} style={{ color: colors.textColor }}></Input>
       <PlusButton onPress={incrementNumber} />
     </View>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
-import { colors } from '../../styles/constants';
+import { colors } from '../../../styles/constants';
 
 interface InputProps {
-  value: string;
+  value: string | number;
   onChangeText?: (text: string) => void;
   placeholder?: string;
   keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
@@ -33,7 +33,7 @@ const Input = ({
 
   return (
     <TextInput
-      value={value}
+      value={value.toString()}
       onChangeText={onChangeText}
       placeholder={placeholder}
       keyboardType={keyboardType}

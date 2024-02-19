@@ -1,6 +1,6 @@
 import { Platform, View } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
-import { colors } from '../../styles/constants';
+import { colors } from '../../../styles/constants';
 
 interface TabIconProps {
   focused: boolean;

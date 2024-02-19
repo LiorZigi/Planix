@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import { colors } from '../../styles/constants';
+import { colors } from '../../../styles/constants';
 
 interface TabLabelProps {
   label?: string;
