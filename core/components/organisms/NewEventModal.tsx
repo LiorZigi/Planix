@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Checkbox from '../../../core/components/atoms/CheckBox';
 import NumberPicker from '../../../core/components/molecules/NumberPicker';
 import Table from '../../../core/components/atoms/Table';
+import ExpansionPanel from '../atoms/ExpansionPanel';
 
 interface NewEventModalProps {
   data: Array<{
@@ -56,7 +57,9 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
           />
         </View>
       </View>
-      <Table data={data}></Table>
+      <View style={styles.panelContainer}>
+        <ExpansionPanel title="Essentials" content="Content goes here" />
+      </View>
     </View>
   );
 };
@@ -79,5 +82,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     gap: 12,
+  },
+  panelContainer: {
+    paddingHorizontal: 16,
   },
 });

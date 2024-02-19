@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Animated, Pressable } from 'react-native';
+import { View, Animated, Pressable, Vibration } from 'react-native';
 import { colors } from '../../../styles/constants';
+import * as Haptics from 'expo-haptics';
 
 interface CheckboxProps {
   checked: boolean;
@@ -22,7 +23,12 @@ const Checkbox = ({ checked, onPress, style }: CheckboxProps) => {
   };
 
   return (
-    <Pressable onPress={handlePress}>
+    <Pressable
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        handlePress();
+      }}
+    >
       <View
         style={{
           width: 24,
