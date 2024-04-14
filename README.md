@@ -31,7 +31,9 @@ Planix is your go-to app for effortlessly organizing any event, from birthday pa
 # 📸  Screenshots
 
 <p align="center">
-  <img src="assets/simulator_screenshot_2BDF2BCC-86BF-466E-9689-3CE8528B9771.png" alt="Planix Logo" width="200"/>
+  <img src="assets/email-login-portrait.png" alt="Planix Logo" width="200"/>
+  <img src="assets/auth-screen-portrait.png" alt="Planix Logo" width="200"/>
+  <img src="assets/event-modal-portrait.png" alt="Planix Logo" width="200"/>
 </p>
 
 # 🔗  Links
