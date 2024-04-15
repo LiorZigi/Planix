@@ -8,10 +8,14 @@ Planix is your go-to app for effortlessly organizing any event, from birthday pa
 
 ## 📲  Features
 
-- **Create Groups Easily:** Start planning your event by creating a group for it and inviting your friends or family to join.
-- **List Essentials:** Add anything and everything you need for your event to a shared list.
-- **Volunteer for Tasks:** Members can freely pick items from the list to bring, ensuring everything is covered without duplicating efforts.
-- **Real-Time Updates:** Get instant updates as members choose tasks, keeping everyone in the loop.
+- ## Customizable Groups - Create groups for different events with templates suggesting required essentials.
+- ## Editable Lists - Freedom to modify members and essentials even after a group is created.
+- ## Responsibility Tracking - Members can volunteer for essentials, which updates the list so everyone knows who’s bringing what.
+- ## Progress Indicator - A visual percentage indicator showing how close the group is to having all essentials ready.
+- ## Favorites - Save your favorite event setups for quick planning in the future.
+- ## Unified Chat - Manage communications across multiple groups in one integrated chat system.
+- ## Discover Venues - Use integrated maps to find the perfect public venues for your events.
+
 
 ## 🚀  Getting Started
 
