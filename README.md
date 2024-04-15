@@ -8,7 +8,7 @@ Planix is your go-to app for effortlessly organizing any event, from birthday pa
 
 ## 📲  Features
 
-- ## Customizable Groups ## - Create groups for different events with templates suggesting required essentials.
+- ##Customizable Groups## - Create groups for different events with templates suggesting required essentials.
 - ## Editable Lists ## - Freedom to modify members and essentials even after a group is created.
 - ## Responsibility Tracking ## - Members can volunteer for essentials, which updates the list so everyone knows who’s bringing what.
 - ## Progress Indicator ## - A visual percentage indicator showing how close the group is to having all essentials ready.
