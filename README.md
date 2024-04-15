@@ -41,6 +41,4 @@ Planix is your go-to app for effortlessly organizing any event, from birthday pa
 </p>
 
 # 🔗  Links
-
-- **API Documentation** - Detailed API documentation.
-- **Project Roadmap** - Upcoming features and enhancements.
+...
