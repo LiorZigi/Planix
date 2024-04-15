@@ -3,6 +3,8 @@ import NewEventScreen from './NewEventScreen';
 import BarbicueModal from './components/BarbicueModal';
 import { colors } from '../../styles/constants';
 import BirthdayModal from './components/BirthdayModal';
+import CampingModal from './components/CampingModal';
+import { useDynamicColors } from '../../styles/useDynamicColors';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,13 +17,15 @@ const NewEventStackScreen = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Barbicue"
+        name="Barbecue"
         component={BarbicueModal}
         options={{
           presentation: 'modal',
-          headerTitle: 'Barbicue',
-          headerTitleStyle: { color: colors.textColor },
-          headerStyle: { backgroundColor: colors.topBackgroundColor },
+          headerTitle: 'Barbecue',
+          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerStyle: {
+            backgroundColor: useDynamicColors().topBackgroundColor,
+          },
         }}
       />
       <Stack.Screen
@@ -30,8 +34,46 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'modal',
           headerTitle: 'Birthday',
-          headerTitleStyle: { color: colors.textColor },
-          headerStyle: { backgroundColor: colors.topBackgroundColor },
+          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerStyle: {
+            backgroundColor: useDynamicColors().topBackgroundColor,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Camping"
+        component={CampingModal}
+        options={{
+          presentation: 'modal',
+          headerTitle: 'Camping',
+          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerStyle: {
+            backgroundColor: useDynamicColors().topBackgroundColor,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Custom"
+        component={BarbicueModal}
+        options={{
+          presentation: 'modal',
+          headerTitle: 'Custom',
+          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerStyle: {
+            backgroundColor: useDynamicColors().topBackgroundColor,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Picnic"
+        component={BarbicueModal}
+        options={{
+          presentation: 'modal',
+          headerTitle: 'Picnic',
+          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerStyle: {
+            backgroundColor: useDynamicColors().topBackgroundColor,
+          },
         }}
       />
     </Stack.Navigator>

@@ -1,17 +1,26 @@
-import { StyleSheet } from 'react-native';
+import { ColorSchemeName, Dimensions, StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
+import { useDynamicColors } from './useDynamicColors';
+
+const window = Dimensions.get('window');
 
 const colors = {
   // primaryColor: '#f8380e',
-  primaryColor: '#33bafe',
+  // primaryColor: '#33bafe',
+  primaryColor: '#687EFF',
   successColor: '#2ecc71',
   textColor: '#f5f6fc',
+  textInfoColor: 'gray',
+  headerColor: '#131313',
+  modalHeaderColor: '#2b2d31',
   // cardTopColor: '#1a1b1d',
   // cardBottomColor: '#1d1d1e',
-  cardColor: '#1a1b1d',
+  cardColor: '#272727',
   cardBorderColor: '#505256',
-  topBackgroundColor: '#2b2d31',
-  bottomBackgroundColor: '#171718',
+  // topBackgroundColor: '#2b2d31',
+  // bottomBackgroundColor: '#171718',
+  topBackgroundColor: '#131313',
+  bottomBackgroundColor: '#131313',
   bottomTabsColor: '#131313',
   borderColor: '#343435',
   inputBackgroundColor: '#2b2d31',
@@ -36,10 +45,10 @@ const globalStyles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: colors.textColor,
+    color: useDynamicColors().textColor,
   },
   button: {
-    backgroundColor: colors.primaryColor,
+    backgroundColor: useDynamicColors().primaryColor,
     borderRadius: 8,
     padding: 12,
     alignItems: 'center',
@@ -47,8 +56,8 @@ const globalStyles = StyleSheet.create({
   buttonText: {
     fontFamily: fonts.bold,
     fontSize: 18,
-    color: colors.textColor,
+    color: useDynamicColors().textColor,
   },
 });
 
-export { colors, fonts, globalStyles };
+export { colors, fonts, globalStyles, window };

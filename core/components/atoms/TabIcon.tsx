@@ -1,6 +1,6 @@
 import { Platform, View } from 'react-native';
-import { Octicons } from '@expo/vector-icons';
-import { colors } from '../../../styles/constants';
+import PlanixIcon from '../../icons/PlanixIcon';
+import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface TabIconProps {
   focused: boolean;
@@ -15,10 +15,14 @@ export default function TabIcon({ focused, icon }: TabIconProps) {
         top: Platform.OS === 'ios' ? 15 : 0,
       }}
     >
-      <Octicons
-        name={icon}
-        color={focused ? colors.primaryColor : 'grey'}
-        size={30}
+      <PlanixIcon
+        iconName={icon}
+        size={32}
+        color={
+          focused
+            ? useDynamicColors().primaryColor
+            : useDynamicColors().textColor
+        }
       />
     </View>
   );

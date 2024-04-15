@@ -2,12 +2,15 @@ import React, { PropsWithChildren } from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../../styles/constants';
+import PlanixIcon from '../../../core/icons/PlanixIcon';
 
 interface Props {
   label: string;
   iconLeft: any;
   iconRight: any;
   color?: string;
+  iconLeftSize?: number;
+  iconRightSize?: number;
 }
 
 const SectionButton = ({
@@ -15,15 +18,17 @@ const SectionButton = ({
   iconLeft,
   iconRight,
   color,
+  iconLeftSize = 24,
+  iconRightSize = 24,
 }: PropsWithChildren<Props>) => {
   return (
     <Pressable style={styles.button}>
       <View style={{ flexDirection: 'row' }}>
-        <Ionicons name={iconLeft} size={24} color={colors.textColor} />
+        <PlanixIcon iconName={iconLeft} size={iconLeftSize} />
         <Text style={[styles.label, { color: color }]}>{label}</Text>
       </View>
       <View style={styles.iconContainer}>
-        <Ionicons name={iconRight} size={24} color={colors.textColor} />
+        <PlanixIcon iconName={iconRight} size={iconRightSize} />
       </View>
     </Pressable>
   );

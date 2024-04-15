@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet, Keyboard } from 'react-native';
 import { colors } from '../../../styles/constants';
+import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface InputProps {
   value: string | number;
   onChangeText?: (text: string) => void;
+  autoFocus?: boolean;
   placeholder?: string;
   keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
   secureTextEntry?: boolean;
@@ -15,6 +17,7 @@ interface InputProps {
 const Input = ({
   value,
   onChangeText,
+  autoFocus = false,
   placeholder,
   keyboardType = 'default',
   secureTextEntry = false,
@@ -29,10 +32,13 @@ const Input = ({
 
   const handleBlur = () => {
     setIsFocused(false);
+    Keyboard.dismiss();
   };
 
   return (
     <TextInput
+      placeholderTextColor={useDynamicColors().textInfoColor}
+      autoFocus={autoFocus}
       value={value.toString()}
       onChangeText={onChangeText}
       placeholder={placeholder}
@@ -49,11 +55,12 @@ const Input = ({
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    color: colors.textColor,
-    borderColor: colors.inputBorderColor,
-    backgroundColor: colors.inputBackgroundColor,
-    borderWidth: 1,
-    borderRadius: 5,
+    color: useDynamicColors().textColor,
+    fontSize: 18,
+    // borderColor: useDynamicColors().inputBorderColor,
+    backgroundColor: useDynamicColors().inputBackgroundColor,
+    // borderWidth: 1,
+    borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 10,
   },

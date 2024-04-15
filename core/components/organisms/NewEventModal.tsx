@@ -1,11 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { colors, globalStyles } from '../../../styles/constants';
 import Input from '../../../core/components/atoms/Input';
 import { useState } from 'react';
 import Checkbox from '../../../core/components/atoms/CheckBox';
 import NumberPicker from '../../../core/components/molecules/NumberPicker';
-import Table from '../../../core/components/atoms/Table';
 import ExpansionPanel from '../atoms/ExpansionPanel';
+import PlxButton from '../atoms/PlxButton';
+import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface NewEventModalProps {
   data: Array<{
@@ -27,40 +34,50 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.groupNameContainer}>
-        <Text style={{ ...globalStyles.text, alignSelf: 'center' }}>
-          Group Name
-        </Text>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}
+    >
+      <View>
+        <View style={styles.groupNameContainer}>
+          <Text style={{ ...globalStyles.text, alignSelf: 'center' }}>
+            Group Name
+          </Text>
 
-        <Input
-          value={value}
-          textAlign="center"
-          onChangeText={handleInputChanged}
-        />
-      </View>
-      <View style={styles.membersContainer}>
-        <View style={styles.inputContainer}>
-          <Text style={globalStyles.text}>Number of members</Text>
-          <NumberPicker
-            style={{ justifyContent: 'center' }}
-            value={2}
-            onValueChange={(value) => {}}
+          <Input
+            value={value}
+            textAlign="center"
+            onChangeText={handleInputChanged}
           />
         </View>
-        <View style={styles.inputContainer}>
-          <Text style={globalStyles.text}>Notify members</Text>
-          <Checkbox
-            style={{ alignSelf: 'center' }}
-            checked={checked}
-            onPress={handleCheckboxPress}
-          />
+        <View style={styles.membersContainer}>
+          <View style={styles.inputContainer}>
+            <Text style={globalStyles.text}>Number of members</Text>
+            <NumberPicker
+              style={{ justifyContent: 'center' }}
+              value={2}
+              onValueChange={(value) => {}}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={globalStyles.text}>Notify members</Text>
+            <Checkbox
+              style={{ alignSelf: 'center' }}
+              checked={checked}
+              onPress={handleCheckboxPress}
+            />
+          </View>
+        </View>
+        <View style={styles.panelContainer}>
+          <ExpansionPanel title="Essentials" content="List goes here" />
         </View>
       </View>
-      <View style={styles.panelContainer}>
-        <ExpansionPanel title="Essentials" content="Content goes here" />
+
+      <View style={{ marginBottom: 30 }}>
+        <PlxButton title="Create Group" onPress={() => {}} />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -69,7 +86,8 @@ export default NewEventModal;
 const styles = StyleSheet.create({
   container: {
     ...globalStyles.container,
-    backgroundColor: colors.bottomBackgroundColor,
+    backgroundColor: useDynamicColors().bottomBackgroundColor,
+    justifyContent: 'space-between',
   },
   groupNameContainer: {
     paddingHorizontal: 16,
@@ -85,5 +103,9 @@ const styles = StyleSheet.create({
   },
   panelContainer: {
     paddingHorizontal: 16,
+  },
+  createButton: {
+    // flex: 1,
+    // marginBottom: 30,
   },
 });

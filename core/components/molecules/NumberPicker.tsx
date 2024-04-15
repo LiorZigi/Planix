@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 import PlusButton from '../atoms/PlusButton';
 import MinusButton from '../atoms/MinusButton';
-import { colors } from '../../../styles/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import membersCounter, {
   decrement,
@@ -10,6 +9,7 @@ import membersCounter, {
 } from '../../../store/slices/membersCounter';
 import { RootState } from '../../../store/store';
 import Input from '../atoms/Input';
+import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface NumberPickerProps {
   value: number;
@@ -32,7 +32,10 @@ const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
   return (
     <View style={[{ flexDirection: 'row' }, style]}>
       <MinusButton onPress={decrementNumber} />
-      <Input value={number} style={{ color: colors.textColor }}></Input>
+      <Input
+        value={number}
+        style={{ color: useDynamicColors().textColor }}
+      ></Input>
       <PlusButton onPress={incrementNumber} />
     </View>
   );

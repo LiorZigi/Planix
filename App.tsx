@@ -1,92 +1,131 @@
-import { Platform, StatusBar, StyleSheet } from 'react-native';
+import * as Haptics from 'expo-haptics';
+import { Appearance, Platform, StatusBar, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import ProfileScreen from './screens/profile/ProfileScreen';
-import NewEventScreen from './screens/new-event/NewEventScreen';
-import { colors } from './styles/constants';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Octicons } from '@expo/vector-icons';
 import { View } from 'react-native';
 import TabIcon from './core/components/atoms/TabIcon';
 import TabLabel from './core/components/atoms/TabLabel';
-import TabBar from './core/layout/TabBar';
 import NewEventStackScreen from './screens/new-event/NewEventStackScreen';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import PlanixIcon from './core/icons/PlanixIcon';
+import AuthStackScreen from './screens/auth/AuthStackScreen';
+import { useDynamicColors } from './styles/useDynamicColors';
+import { useEffect } from 'react';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  useEffect(() => {
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+      useDynamicColors(colorScheme);
+    });
+    return () => subscription.remove();
+  }, []);
+
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <StatusBar animated={true} backgroundColor={colors.textColor} />
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarHideOnKeyboard: true,
-            tabBarStyle: {
-              display: 'flex',
-              elevation: 5,
-              backgroundColor: colors.bottomTabsColor,
-              borderTopColor: colors.borderColor,
-              borderTopWidth: 2,
-              borderRadius: 30,
-              position: 'absolute',
-              height: 80,
-            },
-            headerStyle: {
-              height: 100,
-              backgroundColor: colors.topBackgroundColor,
-            },
-            headerShadowVisible: false,
-          })}
-        >
-          <Tab.Screen
-            name="Discover"
-            component={ProfileScreen}
-            options={{
-              headerTitleStyle: {
-                color: colors.textColor,
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <StatusBar animated backgroundColor={useDynamicColors().textColor} />
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarHideOnKeyboard: true,
+              tabBarStyle: {
+                display: 'flex',
+                elevation: 5,
+                backgroundColor: useDynamicColors().bottomTabsColor,
+                borderTopColor: useDynamicColors().borderColor,
+                borderTopWidth: 0,
+                borderRadius: 30,
+                position: 'absolute',
+                height: 80,
               },
-              tabBarIcon: ({ focused }) => (
-                <TabIcon focused={focused} icon={'search'} />
-              ),
-              tabBarLabel: () => <TabLabel />,
-            }}
-          ></Tab.Screen>
-          <Tab.Screen
-            name=" "
-            component={NewEventStackScreen}
-            options={{
-              headerTitleStyle: {
-                color: colors.textColor,
+              headerStyle: {
+                height: 100,
+                backgroundColor: useDynamicColors().headerColor,
               },
-              tabBarIcon: () => (
-                <View style={styles.createButton}>
-                  <Octicons
-                    name="plus"
-                    size={Platform.OS === 'ios' ? 35 : 40}
-                    color={colors.primaryColor}
-                    style={{ opacity: 1 }}
-                  />
-                </View>
-              ),
-            }}
-          ></Tab.Screen>
+              headerShadowVisible: false,
+            })}
+          >
+            <Tab.Screen
+              name="Discover"
+              component={ProfileScreen}
+              options={{
+                headerTitleStyle: {
+                  color: useDynamicColors().textColor,
+                },
+                tabBarIcon: ({ focused }) => (
+                  <TabIcon focused={focused} icon={'map'} />
+                ),
+                tabBarLabel: () => <TabLabel />,
+              }}
+            ></Tab.Screen>
+            <Tab.Screen
+              name="Chat"
+              component={ProfileScreen}
+              options={{
+                headerTitleStyle: {
+                  color: useDynamicColors().textColor,
+                },
+                tabBarIcon: ({ focused }) => (
+                  <TabIcon focused={focused} icon={'chat'} />
+                ),
+                tabBarLabel: () => <TabLabel />,
+              }}
+            ></Tab.Screen>
+            <Tab.Screen
+              name=" "
+              component={NewEventStackScreen}
+              options={{
+                headerTitleStyle: {
+                  color: useDynamicColors().textColor,
+                },
+                tabBarIcon: () => (
+                  <View style={styles.createButton}>
+                    <PlanixIcon
+                      iconName="plus"
+                      size={Platform.OS === 'ios' ? 35 : 40}
+                      color={useDynamicColors().primaryColor}
+                    />
+                  </View>
+                ),
+              }}
+            ></Tab.Screen>
 
-          <Tab.Screen
-            name="Profile"
-            component={ProfileScreen}
-            options={{
-              headerTitleStyle: {
-                color: colors.textColor,
-              },
-              tabBarIcon: ({ focused }) => (
-                <TabIcon focused={focused} icon={'feed-person'} />
-              ),
-              tabBarLabel: () => <TabLabel />,
-            }}
-          ></Tab.Screen>
-        </Tab.Navigator>
-      </NavigationContainer>
+            <Tab.Screen
+              name="Favorites"
+              component={ProfileScreen}
+              options={{
+                headerTitleStyle: {
+                  color: useDynamicColors().textColor,
+                },
+                tabBarIcon: ({ focused }) => (
+                  <TabIcon focused={focused} icon={'heart'} />
+                ),
+                tabBarLabel: () => <TabLabel />,
+              }}
+            ></Tab.Screen>
+
+            <Tab.Screen
+              name="Profile"
+              component={AuthStackScreen}
+              options={{
+                headerTitle: '',
+                header: () => null,
+                headerTitleStyle: {
+                  color: useDynamicColors().textColor,
+                },
+                tabBarIcon: ({ focused }) => (
+                  <TabIcon focused={focused} icon={'user'} />
+                ),
+                tabBarLabel: () => <TabLabel />,
+              }}
+            ></Tab.Screen>
+          </Tab.Navigator>
+        </NavigationContainer>
+      </GestureHandlerRootView>
     </Provider>
   );
 }
@@ -94,14 +133,14 @@ export default function App() {
 const styles = StyleSheet.create({
   createButton: {
     top: Platform.OS === 'ios' ? -18 : -18,
-    width: Platform.OS === 'ios' ? 70 : 70,
-    height: Platform.OS === 'ios' ? 70 : 70,
-    borderRadius: Platform.OS === 'ios' ? 35 : 35,
+    width: Platform.OS === 'ios' ? 60 : 60,
+    height: Platform.OS === 'ios' ? 60 : 60,
+    borderRadius: Platform.OS === 'ios' ? 20 : 20,
 
-    backgroundColor: '#2a2a2c',
-    borderColor: colors.borderColor,
-    borderWidth: 2,
-    opacity: 0.7,
+    backgroundColor: useDynamicColors().topBackgroundColor,
+    borderColor: useDynamicColors().borderColor,
+    borderWidth: 2.5,
+    opacity: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

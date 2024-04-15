@@ -1,6 +1,6 @@
 import NewEventModal from '../../../core/components/organisms/NewEventModal';
 
-const BarbecueModal = () => {
+const CampingModal = () => {
   const dummyData = [
     {
       column1: 'Data 1',
@@ -18,4 +18,4 @@ const BarbecueModal = () => {
   return <NewEventModal data={dummyData} />;
 };
 
-export default BarbecueModal;
+export default CampingModal;

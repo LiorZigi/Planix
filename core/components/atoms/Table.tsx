@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { colors } from '../../../styles/constants';
+import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface TableProps {
   data: Array<{
@@ -41,18 +41,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 5,
-    color: colors.textColor,
+    color: useDynamicColors().textColor,
   },
   headerCell: {
     fontWeight: 'bold',
     flex: 1,
     textAlign: 'center',
-    color: colors.textColor,
+    color: useDynamicColors().textColor,
   },
   cell: {
     flex: 1,
     textAlign: 'center',
-    color: colors.textColor,
+    color: useDynamicColors().textColor,
   },
 });
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Animated, Pressable, StyleSheet } from 'react-native';
 import { colors } from '../../../styles/constants';
 import { Octicons } from '@expo/vector-icons';
+import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface ExpansionPanelProps {
   title: string;
@@ -37,9 +38,9 @@ const ExpansionPanel = ({ title, content }: ExpansionPanelProps) => {
         >
           <Text style={styles.title}>{title}</Text>
           <Octicons
-            name={expanded ? 'chevron-down' : 'chevron-right'}
+            name={expanded ? 'chevron-up' : 'chevron-down'}
             size={20}
-            color={colors.textColor}
+            color={useDynamicColors().textColor}
           />
         </Animated.View>
       </Pressable>
@@ -54,19 +55,20 @@ export default ExpansionPanel;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.inputBackgroundColor,
-    borderRadius: 5,
+    backgroundColor: useDynamicColors().inputBackgroundColor,
+    borderRadius: 8,
     marginBottom: 16,
-    padding: 16,
+    padding: 12,
     overflow: 'hidden',
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: colors.textColor,
+    color: useDynamicColors().textColor,
   },
   content: {
     padding: 16,
-    color: colors.textColor,
+    fontSize: 18,
+    color: useDynamicColors().textColor,
   },
 });
