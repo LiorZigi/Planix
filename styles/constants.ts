@@ -2,7 +2,7 @@ import { ColorSchemeName, Dimensions, StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
 import { useDynamicColors } from './useDynamicColors';
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('screen');
 
 const colors = {
   // primaryColor: '#f8380e',

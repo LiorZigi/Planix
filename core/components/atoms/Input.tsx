@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, Keyboard } from 'react-native';
-import { colors } from '../../../styles/constants';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface InputProps {
@@ -9,6 +8,7 @@ interface InputProps {
   autoFocus?: boolean;
   placeholder?: string;
   keyboardType?: 'default' | 'numeric' | 'email-address' | 'phone-pad';
+  caretHidden?: boolean;
   secureTextEntry?: boolean;
   textAlign?: 'left' | 'right' | 'center';
   style?: object;
@@ -20,6 +20,7 @@ const Input = ({
   autoFocus = false,
   placeholder,
   keyboardType = 'default',
+  caretHidden = false,
   secureTextEntry = false,
   textAlign,
   style,
@@ -43,6 +44,7 @@ const Input = ({
       onChangeText={onChangeText}
       placeholder={placeholder}
       keyboardType={keyboardType}
+      caretHidden={caretHidden}
       secureTextEntry={secureTextEntry}
       textAlign={textAlign}
       onFocus={handleFocus}

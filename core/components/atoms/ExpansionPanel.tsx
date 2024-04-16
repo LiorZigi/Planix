@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, Animated, Pressable, StyleSheet } from 'react-native';
-import { colors } from '../../../styles/constants';
 import { Octicons } from '@expo/vector-icons';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
 

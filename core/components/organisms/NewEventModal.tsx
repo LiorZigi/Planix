@@ -24,6 +24,7 @@ interface NewEventModalProps {
 const NewEventModal = ({ data }: NewEventModalProps) => {
   const [value, setValue] = useState<string>('');
   const [checked, setChecked] = useState<boolean>(false);
+  const [members, setMembers] = useState<number>(2);
 
   const handleCheckboxPress = (): void => {
     setChecked(!checked);
@@ -31,6 +32,10 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
 
   const handleInputChanged = (text: string): void => {
     setValue(text);
+  };
+
+  const handleNumberPickerChange = (value: number): void => {
+    setMembers(value);
   };
 
   return (
@@ -56,8 +61,8 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
             <Text style={globalStyles.text}>Number of members</Text>
             <NumberPicker
               style={{ justifyContent: 'center' }}
-              value={2}
-              onValueChange={(value) => {}}
+              value={members}
+              onValueChange={handleNumberPickerChange}
             />
           </View>
           <View style={styles.inputContainer}>

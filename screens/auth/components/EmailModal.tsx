@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { colors, globalStyles } from '../../../styles/constants';
+import { globalStyles } from '../../../styles/constants';
 import PlxButton from '../../../core/components/atoms/PlxButton';
 import Input from '../../../core/components/atoms/Input';
 import PlanixIcon from '../../../core/icons/PlanixIcon';

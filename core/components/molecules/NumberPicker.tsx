@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import PlusButton from '../atoms/PlusButton';
 import MinusButton from '../atoms/MinusButton';
 import { useDispatch, useSelector } from 'react-redux';
-import membersCounter, {
-  decrement,
-  increment,
-} from '../../../store/slices/membersCounter';
+import { decrement, increment } from '../../../store/slices/membersCounter';
 import { RootState } from '../../../store/store';
 import Input from '../atoms/Input';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
@@ -26,15 +23,19 @@ const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
   };
 
   const decrementNumber = () => {
+    if (number === 1) return;
     dispatch(decrement());
   };
 
   return (
-    <View style={[{ flexDirection: 'row' }, style]}>
+    <View style={[styles.container, style]}>
       <MinusButton onPress={decrementNumber} />
       <Input
         value={number}
-        style={{ color: useDynamicColors().textColor }}
+        keyboardType="numeric"
+        caretHidden={true}
+        style={styles.input}
+        onChangeText={(text) => onValueChange(parseInt(text, 10))}
       ></Input>
       <PlusButton onPress={incrementNumber} />
     </View>
@@ -42,3 +43,15 @@ const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
 };
 
 export default NumberPicker;
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+  },
+  input: {
+    color: useDynamicColors().textColor,
+    textAlign: 'center',
+    minWidth: 50,
+    maxWidth: 50,
+  },
+});

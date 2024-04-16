@@ -1,6 +1,7 @@
 import React from 'react';
+import * as Haptic from 'expo-haptics';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { colors, globalStyles, window } from '../../styles/constants';
+import { globalStyles, window } from '../../styles/constants';
 import BackgroundGradient from '../../styles/GradientBackground';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import Carousel from 'react-native-reanimated-carousel';
@@ -13,6 +14,10 @@ interface NewEventScreenProps {
 
 export default function NewEventScreen({ navigation }: NewEventScreenProps) {
   const PAGE_WIDTH = window.width;
+
+  const handleScrollEnd = () => {
+    Haptic.impactAsync(Haptic.ImpactFeedbackStyle.Medium);
+  };
 
   return (
     <BackgroundGradient
@@ -32,9 +37,14 @@ export default function NewEventScreen({ navigation }: NewEventScreenProps) {
           loop
           width={PAGE_WIDTH}
           height={500}
+          mode="horizontal-stack"
           autoPlay={false}
           data={[...new Array(5).keys()]}
-          scrollAnimationDuration={1000}
+          modeConfig={{
+            snapDirection: 'right',
+          }}
+          scrollAnimationDuration={800}
+          onScrollBegin={handleScrollEnd}
           renderItem={({ index }) => (
             <View style={styles.eventsContainer}>
               <EventCard
@@ -73,5 +83,7 @@ const styles = StyleSheet.create({
     gap: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 0.5,
+    borderColor: useDynamicColors().borderColor,
   },
 });
