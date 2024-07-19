@@ -14,11 +14,19 @@ const ExpansionPanel = ({ title, content }: ExpansionPanelProps) => {
 
   const toggleExpansion = () => {
     setExpanded(!expanded);
-    Animated.timing(animation, {
-      toValue: expanded ? 0 : 1,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
+    !expanded &&
+      Animated.spring(animation, {
+        toValue: 1,
+        speed: 2,
+        bounciness: 12,
+        useNativeDriver: false,
+      }).start();
+    expanded &&
+      Animated.timing(animation, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: false,
+      }).start();
   };
 
   const panelHeight = animation.interpolate({

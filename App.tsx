@@ -26,11 +26,17 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          backgroundColor: useDynamicColors().bottomBackgroundColor,
+        }}
+      >
         <NavigationContainer>
           <StatusBar animated backgroundColor={useDynamicColors().textColor} />
           <Tab.Navigator
-            screenOptions={({ route }) => ({
+            screenOptions={{
+              animation: 'shift',
               tabBarHideOnKeyboard: true,
               tabBarStyle: {
                 display: 'flex',
@@ -47,7 +53,7 @@ export default function App() {
                 backgroundColor: useDynamicColors().headerColor,
               },
               headerShadowVisible: false,
-            })}
+            }}
           >
             <Tab.Screen
               name="Discover"
@@ -56,7 +62,7 @@ export default function App() {
                 headerTitleStyle: {
                   color: useDynamicColors().textColor,
                 },
-                tabBarIcon: ({ focused }) => (
+                tabBarIcon: ({ focused }: any) => (
                   <TabIcon focused={focused} icon={'map'} />
                 ),
                 tabBarLabel: () => <TabLabel />,
@@ -69,7 +75,7 @@ export default function App() {
                 headerTitleStyle: {
                   color: useDynamicColors().textColor,
                 },
-                tabBarIcon: ({ focused }) => (
+                tabBarIcon: ({ focused }: any) => (
                   <TabIcon focused={focused} icon={'chat'} />
                 ),
                 tabBarLabel: () => <TabLabel />,
@@ -101,7 +107,7 @@ export default function App() {
                 headerTitleStyle: {
                   color: useDynamicColors().textColor,
                 },
-                tabBarIcon: ({ focused }) => (
+                tabBarIcon: ({ focused }: any) => (
                   <TabIcon focused={focused} icon={'heart'} />
                 ),
                 tabBarLabel: () => <TabLabel />,
@@ -117,7 +123,7 @@ export default function App() {
                 headerTitleStyle: {
                   color: useDynamicColors().textColor,
                 },
-                tabBarIcon: ({ focused }) => (
+                tabBarIcon: ({ focused }: any) => (
                   <TabIcon focused={focused} icon={'user'} />
                 ),
                 tabBarLabel: () => <TabLabel />,
