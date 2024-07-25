@@ -13,9 +13,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./PlanixFirebaseConfig.plist",
+      "bundleIdentifier": "com.planix.planix"
     },
     "android": {
+      "googleServicesFile": "./PlanixFirebaseServices.json",
+      "package": "com.planix.planix",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -23,6 +27,16 @@
     },
     "web": {
       "favicon": "./assets/Planix.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ]
   }
 }

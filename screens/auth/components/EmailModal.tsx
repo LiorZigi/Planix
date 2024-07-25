@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -13,16 +14,34 @@ import Input from '../../../core/components/atoms/Input';
 import PlanixIcon from '../../../core/icons/PlanixIcon';
 import { useState } from 'react';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { saveEmailToLocalStorage } from '../../../core/logic/storage';
+import { actionCodeSettings } from '../../../firebase';
+import { getAuth, sendSignInLinkToEmail } from 'firebase/auth';
 
 interface EmailModalProps {
   navigation: any;
 }
 
 const EmailModal = ({ navigation }: EmailModalProps) => {
-  const [value, setValue] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const auth = getAuth();
+
+  const sendMagicLink = async () => {
+    try {
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      Alert.alert(
+        'Magic Link Sent!',
+        'Check your email to complete the sign-in process.'
+      );
+      await saveEmailToLocalStorage(email); // Save the email locally for later verification
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Error', 'Failed to send magic link. Please try again.');
+    }
+  };
 
   const handleInputChanged = (text: string): void => {
-    setValue(text);
+    setEmail(text);
   };
 
   return (
@@ -48,7 +67,7 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
           style={styles.input}
           placeholder="Email"
           keyboardType="email-address"
-          value={value}
+          value={email}
           onChangeText={handleInputChanged}
         />
       </View>
@@ -57,7 +76,11 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
       >
-        <PlxButton title="Send magic link" pill={true} onPress={() => {}} />
+        <PlxButton
+          title="Send magic link"
+          pill={true}
+          onPress={sendMagicLink}
+        />
       </KeyboardAvoidingView>
     </View>
   );
