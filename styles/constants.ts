@@ -42,6 +42,7 @@ const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: useDynamicColors().topBackgroundColor,
   },
   text: {
     fontSize: 18,

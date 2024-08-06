@@ -11,6 +11,9 @@ import TabLabel from '../components/atoms/TabLabel';
 import NewEventStackScreen from '../../screens/new-event/NewEventStackScreen';
 import AuthStackScreen from '../../screens/auth/AuthStackScreen';
 import useAuthListener from '../hooks/useAuthListener';
+import DiscoverScreen from '../../screens/discover/DiscoverScreen';
+import ChatScreen from '../../screens/chat/ChatScreen';
+import FavoritesScreen from '../../screens/favorites/FavoritesScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -45,7 +48,7 @@ export default function Router() {
       >
         <Tab.Screen
           name="Discover"
-          component={ProfileScreen}
+          component={DiscoverScreen}
           options={{
             headerTitleStyle: {
               color: dynamicColors.textColor,
@@ -58,7 +61,7 @@ export default function Router() {
         ></Tab.Screen>
         <Tab.Screen
           name="Chat"
-          component={ProfileScreen}
+          component={ChatScreen}
           options={{
             headerTitleStyle: {
               color: dynamicColors.textColor,
@@ -90,7 +93,7 @@ export default function Router() {
 
         <Tab.Screen
           name="Favorites"
-          component={ProfileScreen}
+          component={FavoritesScreen}
           options={{
             headerTitleStyle: {
               color: dynamicColors.textColor,

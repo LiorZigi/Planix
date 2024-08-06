@@ -13,12 +13,12 @@ import { useDynamicColors } from '../../styles/useDynamicColors';
 import { getAuth, signOut } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../store/slices/userSlice';
-import { RootState } from '../../store/store';
+import { RootState, userState } from '../../store/store';
 import { extractNameFromEmail } from '../../core/utils/extractEmail';
 
 export default function ProfileScreen() {
   const auth = getAuth();
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user }: userState = useSelector((state: RootState) => state.user);
   const dynamicColors = useDynamicColors();
   const dispatch = useDispatch();
 
