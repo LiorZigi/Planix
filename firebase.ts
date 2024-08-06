@@ -1,17 +1,8 @@
-// Import the functions you need from the SDKs you need
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import { initializeApp, getApps } from 'firebase/app';
+import { getReactNativePersistence, initializeAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
-import { getApps, initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-// import {...} from "firebase/database";
-// import {...} from "firebase/firestore";
-// import {...} from "firebase/functions";
-// import {...} from "firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyCfbPg1ObfcvPMaWBiNG09usDq9MbfSJwU',
   authDomain: 'planix-da71e.firebaseapp.com',
@@ -22,32 +13,17 @@ const firebaseConfig = {
   measurementId: 'G-LW187DHZG0',
 };
 
-const actionCodeSettings = {
-  // URL you want to redirect back to. The domain (www.example.com) for this
-  // URL must be in the authorized domains list in the Firebase Console.
-  url: 'https://www.example.com/finishSignUp?cartId=1234',
-  handleCodeInApp: true,
-  iOS: {
-    bundleId: 'com.planix.planix',
-  },
-  android: {
-    packageName: 'com.planix.planix',
-    installApp: true,
-    minimumVersion: '12',
-  },
-  dynamicLinkDomain: 'yourapp.page.link',
-};
-
-// Initialize Firebase
 let app;
-if (!getApps().length) {
+if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
 } else {
   app = getApps()[0];
 }
 
+const db = getFirestore(app);
+
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage),
 });
 
-export { actionCodeSettings, app, auth };
+export { db, auth, app };

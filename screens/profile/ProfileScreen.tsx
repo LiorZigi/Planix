@@ -6,20 +6,46 @@ import {
   Text,
   View,
 } from 'react-native';
-import { colors, globalStyles } from '../../styles/constants';
+import { globalStyles } from '../../styles/constants';
 import SectionButton from './components/SectionButton';
 import BackgroundGradient from '../../styles/GradientBackground';
 import { useDynamicColors } from '../../styles/useDynamicColors';
+import { getAuth, signOut } from 'firebase/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearUser } from '../../store/slices/userSlice';
+import { RootState } from '../../store/store';
+import { extractNameFromEmail } from '../../core/utils/extractEmail';
 
 export default function ProfileScreen() {
+  const auth = getAuth();
+  const { user } = useSelector((state: RootState) => state.user);
+  const dynamicColors = useDynamicColors();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('Signed out');
+        dispatch(clearUser());
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <BackgroundGradient
-      topColor={useDynamicColors().topBackgroundColor}
-      bottomColor={useDynamicColors().bottomBackgroundColor}
+      topColor={dynamicColors.topBackgroundColor}
+      bottomColor={dynamicColors.bottomBackgroundColor}
     >
       <ScrollView style={globalStyles.container}>
         <View>
-          <Text style={styles.title}>Hi Lior!</Text>
+          <Text style={styles.title}>
+            Hi{' '}
+            {!user?.displayName
+              ? extractNameFromEmail(user?.email)
+              : user?.displayName}
+            !
+          </Text>
         </View>
         <View style={styles.avatarSection}>
           <Pressable style={styles.avatarContainer}>
@@ -28,7 +54,11 @@ export default function ProfileScreen() {
               source={require('../../assets/avatar.jpg')}
             />
           </Pressable>
-          <Text style={styles.username}>Lior Zigi</Text>
+          <Text style={styles.username}>
+            {!user?.displayName
+              ? extractNameFromEmail(user?.email)
+              : user?.displayName}
+          </Text>
         </View>
 
         <View style={styles.buttonSection}>
@@ -37,7 +67,7 @@ export default function ProfileScreen() {
             label="Account"
             iconLeft="settings"
             iconRight="chevronRight"
-            color={useDynamicColors().textColor}
+            color={dynamicColors.textColor}
             iconLeftSize={30}
             iconRightSize={36}
           />
@@ -46,7 +76,7 @@ export default function ProfileScreen() {
             label="Payment methods"
             iconLeft="creditCard"
             iconRight="chevronRight"
-            color={useDynamicColors().textColor}
+            color={dynamicColors.textColor}
             iconLeftSize={30}
             iconRightSize={36}
           ></SectionButton>
@@ -54,9 +84,10 @@ export default function ProfileScreen() {
             label="Logout"
             iconLeft="logout"
             iconRight="chevronRight"
-            color={useDynamicColors().textColor}
+            color={dynamicColors.textColor}
             iconLeftSize={30}
             iconRightSize={36}
+            onPress={handleLogout}
           ></SectionButton>
         </View>
       </ScrollView>

@@ -1,7 +1,5 @@
 import React, { PropsWithChildren } from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../../../styles/constants';
 import PlanixIcon from '../../../core/icons/PlanixIcon';
 
 interface Props {
@@ -11,6 +9,7 @@ interface Props {
   color?: string;
   iconLeftSize?: number;
   iconRightSize?: number;
+  onPress?: () => void;
 }
 
 const SectionButton = ({
@@ -20,9 +19,10 @@ const SectionButton = ({
   color,
   iconLeftSize = 24,
   iconRightSize = 24,
+  onPress,
 }: PropsWithChildren<Props>) => {
   return (
-    <Pressable style={styles.button}>
+    <Pressable style={styles.button} onPress={onPress}>
       <View style={{ flexDirection: 'row' }}>
         <PlanixIcon iconName={iconLeft} size={iconLeftSize} />
         <Text style={[styles.label, { color: color }]}>{label}</Text>

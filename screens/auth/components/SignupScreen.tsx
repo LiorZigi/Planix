@@ -1,66 +1,41 @@
+import React, { useState } from 'react';
 import {
+  View,
+  Text,
   Image,
+  Pressable,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   StyleSheet,
-  Text,
-  View,
 } from 'react-native';
 import { globalStyles } from '../../../styles/constants';
 import PlxButton from '../../../core/components/atoms/PlxButton';
 import Input from '../../../core/components/atoms/Input';
 import PlanixIcon from '../../../core/icons/PlanixIcon';
-import { useEffect, useState } from 'react';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  User,
-  UserCredential,
-} from 'firebase/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../store/store';
-import { fetchUser, setUser } from '../../../store/slices/userSlice';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
-interface EmailModalProps {
+interface SignupScreenProps {
   navigation: any;
 }
 
-const EmailModal = ({ navigation }: EmailModalProps) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const { user, status } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch<AppDispatch>();
+const SignupScreen = ({ navigation }: SignupScreenProps) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const auth = getAuth();
 
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchUser());
-    }
-    if (user) {
-      navigation.navigate('Profile');
-    }
-  }, [status, user, dispatch, navigation]);
-
-  const handleSignInWithEmailAndPassword = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential: UserCredential) => {
-        const user: User = userCredential.user;
-        dispatch(setUser(user));
-        navigation.navigate('Profile');
-        navigation.goBack();
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('User created:', user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(errorCode, errorMessage);
       });
-  };
-
-  const handleSignUp = () => {
-    navigation.goBack();
-    navigation.navigate('SignUp');
   };
 
   return (
@@ -75,11 +50,9 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
       <View style={styles.headerContainer}>
         <Image
           style={styles.image}
-          source={require('../../../assets/login.png')}
+          source={require('../../../assets/Planix.png')}
         />
-        <Text style={styles.text}>
-          Log in easily with your Email and Password!
-        </Text>
+        <Text style={styles.text}>Create an account to get started</Text>
         <View style={styles.inputContainer}>
           <Input
             style={styles.input}
@@ -95,59 +68,57 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
+          <Input
+            style={styles.input}
+            placeholder="Confirm Password"
+            secureTextEntry={true}
+            value={confirmPassword}
+            onChangeText={(text) => setConfirmPassword(text)}
+          />
         </View>
-        <Pressable onPress={handleSignUp}>
-          <Text style={styles.signupLink}>Not a user yet? Sign up!</Text>
-        </Pressable>
       </View>
       <KeyboardAvoidingView
-        style={styles.button}
+        style={styles.buttonContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
       >
-        <PlxButton
-          title="Log in"
-          pill={true}
-          onPress={handleSignInWithEmailAndPassword}
-        />
+        <PlxButton title="Signup" pill={true} onPress={handleSignUp} />
       </KeyboardAvoidingView>
     </View>
   );
 };
 
-export default EmailModal;
+export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {
     ...globalStyles.container,
     backgroundColor: useDynamicColors().topBackgroundColor,
-    justifyContent: 'flex-end',
-    paddingVertical: 55,
+    justifyContent: 'flex-start',
   },
   close: {
     position: 'absolute',
-    zIndex: 1,
-    top: 80,
-    right: 40,
+    top: 60,
+    left: 40,
   },
   headerContainer: {
     alignItems: 'center',
-    marginBottom: 80,
+    marginTop: 80,
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 200,
+    height: 70,
+    marginVertical: 20,
   },
   text: {
-    ...globalStyles.text,
-    fontSize: 30,
-    fontWeight: 'bold',
+    color: useDynamicColors().textColor,
+    fontSize: 18,
+    marginBottom: 20,
   },
   inputContainer: {
     alignSelf: 'stretch',
     padding: 10,
-    marginTop: 30,
-    gap: 10,
+    gap: 5,
   },
   input: {
     height: 50,
@@ -158,10 +129,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   signupLink: {
-    fontSize: 18,
     color: useDynamicColors().primaryColor,
+    fontSize: 16,
+    marginTop: 10,
   },
-  button: {
-    marginTop: 'auto',
+  buttonContainer: {
+    paddingHorizontal: 10,
   },
 });
