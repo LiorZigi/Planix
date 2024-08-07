@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../../styles/constants';
+import SearchBar from './components/SearchBar';
 
 export default function ChatScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Chat Screen</Text>
+      <SearchBar></SearchBar>
     </View>
   );
 }
