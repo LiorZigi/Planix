@@ -11,34 +11,12 @@ interface EventCardProps {
   style?: object | object[];
   navigation: BottomTabNavigationProp<any>;
   onPress?: () => void;
+  eventName: string;
+  eventEmoji?: string;
   index?: number;
 }
 
-const EventCard = ({ style, navigation, index }: EventCardProps) => {
-  let eventName = '';
-  let eventEmoji = '';
-
-  switch (index) {
-    case 0:
-      eventName = 'Barbecue';
-      eventEmoji = '🥩';
-      break;
-    case 1:
-      eventName = 'Picnic';
-      eventEmoji = '🍉';
-      break;
-    case 2:
-      eventName = 'Camping';
-      eventEmoji = '🏕️';
-      break;
-    case 3:
-      eventName = 'Birthday';
-      eventEmoji = '🎉';
-      break;
-    default:
-      eventName = 'Custom';
-      break;
-  }
+const EventCard = ({ style, navigation, eventName, eventEmoji, index }: EventCardProps) => {
 
   const handlePress = (route: string): void => {
     navigation.navigate(route);
@@ -54,7 +32,7 @@ const EventCard = ({ style, navigation, index }: EventCardProps) => {
         {eventName === 'Custom' ? (
           <Octicons
             name="plus"
-            size={100}
+            size={50}
             color={useDynamicColors().textColor}
           />
         ) : null}
@@ -67,8 +45,9 @@ const EventCard = ({ style, navigation, index }: EventCardProps) => {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 32,
+    borderRadius: 18,
     padding: 16,
+      alignItems: 'center',
   },
   cardShadow: {
     shadowColor: '#000',
@@ -82,10 +61,10 @@ const styles = StyleSheet.create({
   },
   cardText: {
     ...globalStyles.text,
-    fontSize: 24,
+    fontSize: 20,
   },
   eventEmojis: {
-    fontSize: 100,
+    fontSize: 50,
   },
 });
 

@@ -6,11 +6,22 @@ export default function ChatScreen() {
   return (
     <View style={styles.container}>
       <SearchBar></SearchBar>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>No active chats</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: globalStyles.container,
-  text: globalStyles.text,
+  textContainer: {
+    ...globalStyles.container,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    ...globalStyles.text,
+    fontSize: 30,
+  },
 });

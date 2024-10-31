@@ -5,7 +5,6 @@ import { useDynamicColors } from '../../styles/useDynamicColors';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import PlanixIcon from '../icons/PlanixIcon';
-import ProfileScreen from '../../screens/profile/ProfileScreen';
 import TabIcon from '../components/atoms/TabIcon';
 import TabLabel from '../components/atoms/TabLabel';
 import NewEventStackScreen from '../../screens/new-event/NewEventStackScreen';
@@ -14,6 +13,7 @@ import useAuthListener from '../hooks/useAuthListener';
 import DiscoverScreen from '../../screens/discover/DiscoverScreen';
 import ChatScreen from '../../screens/chat/ChatScreen';
 import FavoritesScreen from '../../screens/favorites/FavoritesScreen';
+import ProfileStackNav from '../../screens/profile/ProfileStackNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -107,7 +107,7 @@ export default function Router() {
 
         <Tab.Screen
           name="Profile"
-          component={user ? ProfileScreen : AuthStackScreen}
+          component={user ? ProfileStackNav : AuthStackScreen}
           options={{
             headerTitle: '',
             headerShown: !!user,

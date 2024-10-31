@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     alignItems: 'center',
+      justifyContent: 'center',
   },
   circle: {
     width: 24,

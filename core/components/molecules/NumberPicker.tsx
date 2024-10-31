@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   input: {
     color: useDynamicColors().textColor,
     textAlign: 'center',
-    minWidth: 50,
-    maxWidth: 50,
+    justifyContent: 'center',
+    alignSelf: 'center'
   },
 });
