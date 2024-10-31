@@ -5,7 +5,7 @@ import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface CheckboxProps {
   checked: boolean;
-  onPress: () => void;
+  onPress?: () => void;
   style?: object;
 }
 
@@ -19,7 +19,7 @@ const Checkbox = ({ checked, onPress, style }: CheckboxProps) => {
       useNativeDriver: true,
     }).start();
 
-    onPress();
+    onPress && onPress();
   };
 
   return (

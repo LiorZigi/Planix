@@ -4,12 +4,12 @@ import { globalStyles } from '../../styles/constants';
 export default function FavoritesScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Favorites Screen</Text>
+      <Text style={styles.text}>Favorites list is empty</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: globalStyles.container,
-  text: globalStyles.text,
+  container: {...globalStyles.container, alignItems: 'center'},
+  text: {...globalStyles.text, fontSize: 30, marginTop: 80},
 });

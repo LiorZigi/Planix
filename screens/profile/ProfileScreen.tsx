@@ -15,14 +15,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../store/slices/userSlice';
 import { RootState, userState } from '../../store/store';
 import { extractNameFromEmail } from '../../core/utils/extractEmail';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
-export default function ProfileScreen() {
+interface ProfileScreenProps {
+    navigation: BottomTabNavigationProp<any>;
+    }
+
+export default function ProfileScreen({ navigation }: ProfileScreenProps) {
   const auth = getAuth();
   const { user }: userState = useSelector((state: RootState) => state.user);
   const dynamicColors = useDynamicColors();
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
+  const handlePress = (): void => {
+    navigation.navigate('Account');
+  }
+
+  const handleLogout = (): void => {
     signOut(auth)
       .then(() => {
         console.log('Signed out');
@@ -70,6 +79,7 @@ export default function ProfileScreen() {
             color={dynamicColors.textColor}
             iconLeftSize={30}
             iconRightSize={36}
+            onPress={handlePress}
           />
           <Text style={styles.sections}>Account</Text>
           <SectionButton
