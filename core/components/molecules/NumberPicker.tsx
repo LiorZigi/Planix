@@ -2,9 +2,6 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import PlusButton from '../atoms/PlusButton';
 import MinusButton from '../atoms/MinusButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from '../../../store/slices/membersCounter';
-import { RootState } from '../../../store/store';
 import Input from '../atoms/Input';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
 
@@ -15,16 +12,15 @@ interface NumberPickerProps {
 }
 
 const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
-  const dispatch = useDispatch();
-  const number = useSelector((state: RootState) => state.membersCounter.value);
+  const [number, setNumber] = React.useState(value);
 
   const incrementNumber = () => {
-    dispatch(increment());
+    setNumber(number + 1);
   };
 
   const decrementNumber = () => {
-    if (number === 1) return;
-    dispatch(decrement());
+    if (number === 0) return;
+    setNumber(number - 1);
   };
 
   return (
@@ -52,6 +48,6 @@ const styles = StyleSheet.create({
     color: useDynamicColors().textColor,
     textAlign: 'center',
     justifyContent: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });

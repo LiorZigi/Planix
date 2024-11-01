@@ -4,7 +4,6 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { globalStyles, window } from '../../styles/constants';
 import BackgroundGradient from '../../styles/GradientBackground';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import Carousel from 'react-native-reanimated-carousel';
 import EventCard from '../../core/components/atoms/EventCard';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 
@@ -13,39 +12,39 @@ interface NewEventScreenProps {
 }
 
 interface Event {
-   name: string;
-   emoji?: string;
-   }
+  name: string;
+  emoji?: string;
+}
 
 export default function NewEventScreen({ navigation }: NewEventScreenProps) {
-   const events: Event[] = [
-      {
-         name: 'Barbecue',
-         emoji: '🥩',
-      },
-      {
-         name: 'Picnic',
-         emoji: '🍉',
-      },
-      {
-         name: 'Camping',
-         emoji: '🏕️',
-      },
-      {
-         name: 'Birthday',
-         emoji: '🎉',
-      },
-      {
-         name: 'Custom',
-      }
-   ]
+  const events: Event[] = [
+    {
+      name: 'Barbecue',
+      emoji: '🥩',
+    },
+    {
+      name: 'Picnic',
+      emoji: '🍉',
+    },
+    {
+      name: 'Camping',
+      emoji: '🏕️',
+    },
+    {
+      name: 'Birthday',
+      emoji: '🎉',
+    },
+    {
+      name: 'Custom',
+    },
+  ];
 
   return (
     <BackgroundGradient
       topColor={useDynamicColors().topBackgroundColor}
       bottomColor={useDynamicColors().bottomBackgroundColor}
     >
-      <ScrollView style={globalStyles.container}>
+      <ScrollView style={styles.container}>
         <Image
           style={styles.logo}
           source={require('../../assets/Planix.png')}
@@ -55,28 +54,32 @@ export default function NewEventScreen({ navigation }: NewEventScreenProps) {
           Choose the kind of event you'd like to create
         </Text>
         <View style={styles.eventsContainer}>
-         {events.map((event, index) => (
+          {events.map((event, index) => (
             <EventCard
-               key={index}
-               index={index}
-               navigation={navigation}
-               eventName={event.name}
-               eventEmoji={event.emoji}
-               style={styles.cardContainer}
-               />
-            ))}
-         </ View>
+              key={index}
+              index={index}
+              navigation={navigation}
+              eventName={event.name}
+              eventEmoji={event.emoji}
+              style={styles.cardContainer}
+            />
+          ))}
+        </View>
       </ScrollView>
     </BackgroundGradient>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    ...globalStyles.container,
+    marginTop: 40,
+  },
   logo: {
-    height: 60,
-    width: 180,
+    height: 35,
+    width: 130,
     alignSelf: 'center',
-      marginBottom: 20,
+    marginBottom: 20,
   },
   text: {
     ...globalStyles.text,
@@ -84,20 +87,20 @@ const styles = StyleSheet.create({
   },
   eventsContainer: {
     ...globalStyles.container,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 15,
-      flexWrap: 'wrap',
-      marginTop: 10,
-
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 15,
+    flexWrap: 'wrap',
+    marginTop: 10,
   },
   cardContainer: {
-    height: 160,
-    width: 150,
+    height: 180,
+    width: 140,
     gap: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 0.5,
+    borderWidth: 1,
+    borderColor: useDynamicColors().borderColor,
   },
 });

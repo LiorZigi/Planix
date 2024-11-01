@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Pressable, Text, View } from 'react-native';
+import { StyleSheet, Pressable, Text } from 'react-native';
 import BackgroundGradient from '../../../styles/GradientBackground';
-import { colors } from '../../../styles/constants';
 import { globalStyles } from '../../../styles/constants';
 import { Octicons } from '@expo/vector-icons';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
@@ -16,8 +15,13 @@ interface EventCardProps {
   index?: number;
 }
 
-const EventCard = ({ style, navigation, eventName, eventEmoji, index }: EventCardProps) => {
-
+const EventCard = ({
+  style,
+  navigation,
+  eventName,
+  eventEmoji,
+  index,
+}: EventCardProps) => {
   const handlePress = (route: string): void => {
     navigation.navigate(route);
   };
@@ -25,8 +29,8 @@ const EventCard = ({ style, navigation, eventName, eventEmoji, index }: EventCar
   return (
     <Pressable onPress={handlePress.bind(null, eventName)}>
       <BackgroundGradient
-        topColor={useDynamicColors().cardTopColor}
-        bottomColor={useDynamicColors().cardBottomColor}
+        topColor={useDynamicColors().inputBackgroundColor}
+        bottomColor={useDynamicColors().inputBackgroundColor}
         style={[styles.card, style]}
       >
         {eventName === 'Custom' ? (
@@ -45,9 +49,9 @@ const EventCard = ({ style, navigation, eventName, eventEmoji, index }: EventCar
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 18,
+    borderRadius: 10,
     padding: 16,
-      alignItems: 'center',
+    alignItems: 'center',
   },
   cardShadow: {
     shadowColor: '#000',

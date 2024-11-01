@@ -76,9 +76,7 @@ export default function Router() {
           name=" "
           component={NewEventStackScreen}
           options={{
-            headerTitleStyle: {
-              color: dynamicColors.textColor,
-            },
+            headerShown: false,
             tabBarIcon: () => (
               <View style={styles.createButton}>
                 <PlanixIcon
