@@ -25,6 +25,10 @@ export default function PlanixStackScreen({ navigation }: PlanixStackScreenProps
             drawerContentStyle: {
                backgroundColor: dynamicColors.inputBackgroundColor,
             },
+            drawerLabelStyle: {
+               color: dynamicColors.textColor,
+            },
+            drawerActiveTintColor: dynamicColors.textColor,
             sceneContainerStyle: {
                backgroundColor: dynamicColors.topBackgroundColor,
             },
@@ -41,8 +45,8 @@ export default function PlanixStackScreen({ navigation }: PlanixStackScreenProps
 
 const styles = StyleSheet.create({
    logo: {
-      height: 35,
-      width: 130,
+      height: 25,
+      width: 100,
       alignSelf: 'center',
     },
 });

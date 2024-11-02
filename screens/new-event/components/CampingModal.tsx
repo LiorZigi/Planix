@@ -3,19 +3,22 @@ import NewEventModal from '../../../core/components/organisms/NewEventModal';
 const CampingModal = () => {
   const dummyData = [
     {
-      column1: 'Data 1',
-      column2: 'Data 2',
+      isChecked: false,
+      product: 'Data 1',
+      amount: 2,
     },
     {
-      column1: 'Data 3',
-      column2: 'Data 4',
+      isChecked: true,
+      product: 'Data 3',
+      amount: 4,
     },
     {
-      column1: 'Data 5',
-      column2: 'Data 6',
+      isChecked: false,
+      product: 'Data 5',
+      amount: 6,
     },
   ];
-  return <NewEventModal data={dummyData} />;
+  return <NewEventModal event='Camping' data={dummyData} />;
 };
 
 export default CampingModal;

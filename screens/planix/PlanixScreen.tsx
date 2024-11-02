@@ -7,6 +7,7 @@ import MembersTab from './components/MembersTab';
 import AboutTab from './components/AboutTab';
 import Animated from 'react-native-reanimated';
 import { useDynamicColors } from '../../styles/useDynamicColors';
+import PlxButton from '../../core/components/atoms/PlxButton';
 
 interface PlanixScreenProps {
   navigation: any;
@@ -26,13 +27,18 @@ export default function PlanixScreen({ navigation }: PlanixScreenProps) {
       <View style={styles.container}>
          <View style={styles.groupDetailsContainer}>
             <Text style={styles.groupName}>Group Name</Text>
-            <Text style={styles.location}>📍 Location</Text>
-            <Text style={styles.date}>🗓️ Date</Text>
+            <Text style={styles.location}>📍 Location   </Text>
+            <Text style={styles.date}>🗓️ Date   </Text>
             <View style={{justifyContent: 'space-between'}}>
                <View style={styles.progressBar}>
                   <CircularProgressBar progress={80} />
                   <Text style={{...globalStyles.text, color: colors.textColor, fontSize: 16, alignSelf: 'center'}}>80% complete</Text>
                </View>
+            <View style={{width: '50%', alignSelf: 'center'}}>
+               <PlxButton title='Choose Product'>
+
+               </PlxButton>
+            </View>
             <Animated.View style={styles.tabsContainer}>
                <Tab.Navigator screenOptions={screenOptions}>
                   <Tab.Screen name="Activity">
@@ -55,11 +61,9 @@ export default function PlanixScreen({ navigation }: PlanixScreenProps) {
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-
    },
    groupDetailsContainer: {
-      gap: 7,
-
+      gap: 15,
    },
    groupName: {
       ...globalStyles.text,
@@ -79,9 +83,9 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
    },
    progressBar: {
+      marginTop: 10,
    },
    tabsContainer: {
-      height: '45%',
-      marginTop: 50,
+      height: '40%',
    },
 });

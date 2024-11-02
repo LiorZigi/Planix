@@ -38,8 +38,8 @@ function CircularProgressBar({ progress }: CircularProgressBarProps) {
   return (
     <View style={styles.container}>
       <Svg
-        width={halfCircle * 3.5}
-        height={halfCircle * 3.5}
+        width={halfCircle * 3}
+        height={halfCircle * 3}
         viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
       >
         <Circle
