@@ -23,7 +23,7 @@ export default function Router() {
   useAuthListener();
 
   return (
-    <NavigationContainer>
+   <>
       <StatusBar animated backgroundColor={dynamicColors.textColor} />
       <Tab.Navigator
         screenOptions={{
@@ -119,7 +119,7 @@ export default function Router() {
           }}
         ></Tab.Screen>
       </Tab.Navigator>
-    </NavigationContainer>
+      </>
   );
 }
 

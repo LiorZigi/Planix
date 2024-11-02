@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NewEventScreen from './NewEventScreen';
 import BarbicueModal from './components/BarbicueModal';
-import { colors } from '../../styles/constants';
 import BirthdayModal from './components/BirthdayModal';
 import CampingModal from './components/CampingModal';
 import { useDynamicColors } from '../../styles/useDynamicColors';

@@ -24,6 +24,8 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
+import PlanixScreen from '../../../screens/planix/PlanixScreen';
 interface NewEventModalProps {
   event: string;
   data: Array<{
@@ -36,6 +38,7 @@ interface NewEventModalProps {
 const Tab = createMaterialTopTabNavigator();
 
 const NewEventModal = ({ data }: NewEventModalProps) => {
+  const navigation = useNavigation<any>();
   const offset = useSharedValue<number>(0);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
@@ -70,6 +73,11 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
       stiffness: 100,
     });
   };
+
+  const handleCreateGroup = (): void => {
+      navigation.goBack();
+      navigation.navigate('PlanixStack');
+   }
 
   return (
     <KeyboardAvoidingView
@@ -127,7 +135,7 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
       </Animated.View>
 
       <View style={styles.createButton}>
-        <PlxButton title="Create Group" onPress={() => {}} />
+        <PlxButton title="Create Group" onPress={handleCreateGroup} />
       </View>
     </KeyboardAvoidingView>
   );

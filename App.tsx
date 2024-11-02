@@ -5,6 +5,11 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useDynamicColors } from './styles/useDynamicColors';
 import { useEffect } from 'react';
 import Router from './core/routes/Router';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import PlanixStackScreen from './screens/planix/PlanixStackScreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   useEffect(() => {
@@ -22,7 +27,20 @@ export default function App() {
           backgroundColor: useDynamicColors().bottomBackgroundColor,
         }}
       >
-        <Router />
+         <NavigationContainer>
+            <Stack.Navigator initialRouteName="Router">
+               <Stack.Screen
+                  name="Router"
+                  component={Router}
+                  options={{ headerShown: false }}
+               />
+               <Stack.Screen
+                  name="PlanixStack"
+                  component={PlanixStackScreen}
+                  options={{ headerShown: false }}
+               />
+            </Stack.Navigator>
+         </NavigationContainer>
       </GestureHandlerRootView>
     </Provider>
   );
