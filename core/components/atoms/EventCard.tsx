@@ -27,7 +27,7 @@ const EventCard = ({
   };
 
   return (
-    <Pressable onPress={handlePress.bind(null, eventName)}>
+    <Pressable onPress={handlePress.bind(null, eventName)} style={styles.cardShadow}>
       <BackgroundGradient
         topColor={useDynamicColors().inputBackgroundColor}
         bottomColor={useDynamicColors().inputBackgroundColor}
@@ -49,18 +49,18 @@ const EventCard = ({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 16,
     alignItems: 'center',
   },
   cardShadow: {
     shadowColor: '#000',
     shadowOffset: {
-      width: 4,
-      height: 5,
+      width: 0,
+      height: 10,
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
+    shadowOpacity: 0.4,
+    shadowRadius: 7,
     elevation: 5,
   },
   cardText: {

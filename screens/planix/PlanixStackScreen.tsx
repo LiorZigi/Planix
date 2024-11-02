@@ -1,52 +1,62 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import PlanixScreen from "./PlanixScreen";
-import { useDynamicColors } from "../../styles/useDynamicColors";
-import { Image, StyleSheet } from "react-native";
+import React from 'react';
+import { Image, StyleSheet } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationProp, RouteProp } from '@react-navigation/native';
+import PlanixScreen from './PlanixScreen';
+import { useDynamicColors } from '../../styles/useDynamicColors';
 
-interface PlanixStackScreenProps {
-   navigation: any;
-}
 const Drawer = createDrawerNavigator();
 
-export default function PlanixStackScreen({ navigation }: PlanixStackScreenProps) {
-   const dynamicColors = useDynamicColors();
+interface PlanixStackScreenProps {
+  navigation: NavigationProp<any>;
+  route: RouteProp<any, any>;
+}
 
-   return (
-      <Drawer.Navigator initialRouteName="Planix" screenOptions={
-         {
-            headerStyle: {
-               backgroundColor: dynamicColors.topBackgroundColor,
-               shadowColor: 'transparent',
+export default function PlanixStackScreen({ navigation, route }: PlanixStackScreenProps) {
+  const dynamicColors = useDynamicColors();
 
-            },
-            headerTitle() {
-               return <Image style={styles.logo} source={require('../../assets/Planix.png')} />;
-            },
-            drawerContentStyle: {
-               backgroundColor: dynamicColors.inputBackgroundColor,
-            },
-            drawerLabelStyle: {
-               color: dynamicColors.textColor,
-            },
-            drawerActiveTintColor: dynamicColors.textColor,
-            sceneContainerStyle: {
-               backgroundColor: dynamicColors.topBackgroundColor,
-            },
-         }
-
-      }>
-         <Drawer.Screen name="Planix" component={PlanixScreen} />
-         <Drawer.Screen name="Back">
-            {() => navigation.goBack()}
-         </Drawer.Screen>
-      </Drawer.Navigator>
-   );
+  return (
+    <Drawer.Navigator
+      initialRouteName="Planix"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: dynamicColors.topBackgroundColor,
+          shadowColor: 'transparent',
+        },
+        headerTitle() {
+          return <Image style={styles.logo} source={require('../../assets/Planix.png')} />;
+        },
+        drawerContentStyle: {
+          backgroundColor: dynamicColors.inputBackgroundColor,
+        },
+        drawerLabelStyle: {
+          color: dynamicColors.textColor,
+        },
+        drawerActiveTintColor: dynamicColors.textColor,
+        sceneContainerStyle: {
+          backgroundColor: dynamicColors.topBackgroundColor,
+        },
+      }}
+    >
+      <Drawer.Screen
+        name="Planix"
+        component={PlanixScreen}
+        initialParams={route.params}
+      />
+      <Drawer.Screen name="Back">
+        {() => {
+          navigation.goBack();
+          return null;
+        }}
+      </Drawer.Screen>
+    </Drawer.Navigator>
+  );
 }
 
 const styles = StyleSheet.create({
-   logo: {
-      height: 25,
-      width: 100,
-      alignSelf: 'center',
-    },
+  logo: {
+    width: 100,
+    height: 40,
+    resizeMode: 'contain',
+  },
 });

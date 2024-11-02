@@ -1,11 +1,10 @@
-import React from 'react';
-import * as Haptic from 'expo-haptics';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { globalStyles, window } from '../../styles/constants';
+import { Image, ScrollView, StyleSheet, Text } from 'react-native';
+import { globalStyles } from '../../styles/constants';
 import BackgroundGradient from '../../styles/GradientBackground';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import EventCard from '../../core/components/atoms/EventCard';
 import { useDynamicColors } from '../../styles/useDynamicColors';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 interface NewEventScreenProps {
   navigation: BottomTabNavigationProp<any>;
@@ -53,7 +52,7 @@ export default function NewEventScreen({ navigation }: NewEventScreenProps) {
         <Text style={styles.text}>
           Choose the kind of event you'd like to create
         </Text>
-        <View style={styles.eventsContainer}>
+        <Animated.View entering={FadeInDown} style={styles.eventsContainer}>
           {events.map((event, index) => (
             <EventCard
               key={index}
@@ -64,7 +63,7 @@ export default function NewEventScreen({ navigation }: NewEventScreenProps) {
               style={styles.cardContainer}
             />
           ))}
-        </View>
+        </Animated.View>
       </ScrollView>
     </BackgroundGradient>
   );
@@ -88,19 +87,18 @@ const styles = StyleSheet.create({
   eventsContainer: {
     ...globalStyles.container,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
-    gap: 15,
     flexWrap: 'wrap',
-    marginTop: 10,
+    gap: 20,
+    marginTop: 40,
   },
   cardContainer: {
-    height: 180,
-    width: 140,
+    height: 165,
+    width: 150,
     gap: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: useDynamicColors().borderColor,
   },
 });

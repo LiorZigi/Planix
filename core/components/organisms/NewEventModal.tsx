@@ -1,5 +1,4 @@
 import {
-  FlexStyle,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -8,7 +7,7 @@ import {
 } from 'react-native';
 import { colors, globalStyles } from '../../../styles/constants';
 import Input from '../../../core/components/atoms/Input';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Checkbox from '../../../core/components/atoms/CheckBox';
 import NumberPicker from '../../../core/components/molecules/NumberPicker';
 import ExpansionPanel from '../atoms/ExpansionPanel';
@@ -25,7 +24,6 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
-import PlanixScreen from '../../../screens/planix/PlanixScreen';
 interface NewEventModalProps {
   event: string;
   data: Array<{
@@ -37,18 +35,20 @@ interface NewEventModalProps {
 
 const Tab = createMaterialTopTabNavigator();
 
-const NewEventModal = ({ data }: NewEventModalProps) => {
+const NewEventModal = ({ event, data }: NewEventModalProps) => {
+  const dynamicColors = useDynamicColors();
   const navigation = useNavigation<any>();
   const offset = useSharedValue<number>(0);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
   const [checked, setChecked] = useState<boolean>(false);
   const [members, setMembers] = useState<number>(2);
+  const isDisabled = value.trim() === '';
   const screenOptions: MaterialTopTabNavigationOptions = {
     tabBarLabelStyle: { fontSize: 15, textTransform: 'capitalize' },
-    tabBarStyle: { backgroundColor: colors.inputBackgroundColor },
-    tabBarIndicatorStyle: { backgroundColor: colors.textColor },
-    tabBarActiveTintColor: colors.textColor,
+    tabBarStyle: { backgroundColor: dynamicColors.inputBackgroundColor },
+    tabBarIndicatorStyle: { backgroundColor: dynamicColors.textColor },
+    tabBarActiveTintColor: dynamicColors.textColor,
   };
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: offset.value }],
@@ -76,7 +76,12 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
 
   const handleCreateGroup = (): void => {
       navigation.goBack();
-      navigation.navigate('PlanixStack');
+      navigation.navigate('PlanixStack', {
+         event: event,
+         groupName: value,
+         members: members,
+         notifyMembers: checked,
+      });
    }
 
   return (
@@ -135,7 +140,7 @@ const NewEventModal = ({ data }: NewEventModalProps) => {
       </Animated.View>
 
       <View style={styles.createButton}>
-        <PlxButton title="Create Group" onPress={handleCreateGroup} />
+        <PlxButton title="Create Group" disabled={isDisabled} onPress={handleCreateGroup} />
       </View>
     </KeyboardAvoidingView>
   );
