@@ -5,38 +5,28 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import EventCard from '../../core/components/atoms/EventCard';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import { useEffect, useState } from 'react';
+import { Event } from '../../mocks/events-types/event-types';
+import { useFetchEvents } from '../../core/hooks/useFetchEvents';
 
 interface NewEventScreenProps {
   navigation: BottomTabNavigationProp<any>;
 }
 
-interface Event {
-  name: string;
-  emoji?: string;
-}
-
 export default function NewEventScreen({ navigation }: NewEventScreenProps) {
-  const events: Event[] = [
-    {
-      name: 'Barbecue',
-      emoji: '🥩',
-    },
-    {
-      name: 'Picnic',
-      emoji: '🍉',
-    },
-    {
-      name: 'Camping',
-      emoji: '🏕️',
-    },
-    {
-      name: 'Birthday',
-      emoji: '🎉',
-    },
-    {
-      name: 'Custom',
-    },
-  ];
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const events = await useFetchEvents();
+        setEvents(events);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   return (
     <BackgroundGradient

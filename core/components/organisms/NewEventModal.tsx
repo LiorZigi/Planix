@@ -24,13 +24,10 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
+import { EventData } from '../../../models/EventData';
 interface NewEventModalProps {
   event: string;
-  data: Array<{
-    isChecked: boolean;
-    product: string | number;
-    amount: string | number;
-  }>;
+  data: EventData | undefined;
 }
 
 const Tab = createMaterialTopTabNavigator();
@@ -75,14 +72,14 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
   };
 
   const handleCreateGroup = (): void => {
-      navigation.goBack();
-      navigation.navigate('PlanixStack', {
-         event: event,
-         groupName: value,
-         members: members,
-         notifyMembers: checked,
-      });
-   }
+    navigation.goBack();
+    navigation.navigate('PlanixStack', {
+      event: event,
+      groupName: value,
+      members: members,
+      notifyMembers: checked,
+    });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -126,13 +123,16 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
               screenOptions={screenOptions}
             >
               <Tab.Screen name="Disposables">
-                {() => <EssentialsList data={data} />}
+                {() => <EssentialsList data={data?.disposables} />}
               </Tab.Screen>
-              <Tab.Screen name="Groceries">
-                {() => <EssentialsList data={data} />}
+              <Tab.Screen name="Food">
+                {() => <EssentialsList data={data?.food} />}
+              </Tab.Screen>
+              <Tab.Screen name="Drinks">
+                {() => <EssentialsList data={data?.drinks} />}
               </Tab.Screen>
               <Tab.Screen name="Others">
-                {() => <EssentialsList data={data} />}
+                {() => <EssentialsList data={data?.others} />}
               </Tab.Screen>
             </Tab.Navigator>
           </ExpansionPanel>
@@ -140,7 +140,11 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
       </Animated.View>
 
       <View style={styles.createButton}>
-        <PlxButton title="Create Group" disabled={isDisabled} onPress={handleCreateGroup} />
+        <PlxButton
+          title="Create Group"
+          disabled={isDisabled}
+          onPress={handleCreateGroup}
+        />
       </View>
     </KeyboardAvoidingView>
   );
