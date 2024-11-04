@@ -40,7 +40,7 @@ const getColors = (colorScheme: ColorSchemeName) => {
 };
 
 export function useDynamicColors(colorScheme?: ColorSchemeName) {
-  const colors = getColors('dark');
+  const colors = getColors(colorScheme || Appearance.getColorScheme());
 
   return colors;
 }

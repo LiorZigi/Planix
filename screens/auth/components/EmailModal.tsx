@@ -38,7 +38,7 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
       dispatch(fetchUser());
     }
     if (user) {
-      navigation.navigate('Profile');
+      navigation.navigate('Create');
     }
   }, [status, user, dispatch, navigation]);
 
@@ -48,8 +48,8 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
       .then((userCredential: UserCredential) => {
         const user: User = userCredential.user;
         dispatch(setUser(user));
-        navigation.navigate('Profile');
         navigation.goBack();
+        navigation.navigate('Create');
       })
       .catch((error) => {
         const errorCode = error.code;
