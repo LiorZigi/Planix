@@ -5,6 +5,11 @@ import BackgroundGradient from '../../styles/GradientBackground';
 import PlxButton from '../../core/components/atoms/PlxButton';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useDynamicColors } from '../../styles/useDynamicColors';
+import Animated, {
+  FadeIn,
+  FadeInDown,
+  FadeInLeft,
+} from 'react-native-reanimated';
 
 interface AuthScreenProps {
   navigation: BottomTabNavigationProp<any>;
@@ -20,27 +25,33 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
       topColor={useDynamicColors().topBackgroundColor}
       bottomColor={useDynamicColors().bottomBackgroundColor}
     >
-      <View style={styles.container}>
-        <View style={styles.header}>
+      <Animated.View style={styles.container} entering={FadeIn}>
+        <Animated.View style={styles.header} entering={FadeIn}>
           <Image
             source={require('../../assets/Planix.png')}
             style={styles.headerLogo}
           />
-        </View>
-        <View style={{ gap: 10 }}>
+        </Animated.View>
+        <Animated.View
+          style={{ gap: 10 }}
+          entering={FadeInLeft.duration(600).stiffness(3)}
+        >
           <Text style={styles.headerTitle}>Let's get Planix!</Text>
-          <Text style={globalStyles.text}>
+          <Text style={[globalStyles.text, { textAlign: 'center' }]}>
             Please choose how you want to continue setting up your account.
           </Text>
-        </View>
-        <View>
+        </Animated.View>
+        <Animated.View entering={FadeInDown.duration(600).delay(400)}>
           <Image
             source={require('../../assets/gathering.png')}
             style={styles.gatheringImage}
           />
-        </View>
+        </Animated.View>
         <View style={styles.footer}>
-          <View style={styles.buttonContainer}>
+          <Animated.View
+            style={styles.buttonContainer}
+            entering={FadeInDown.delay(800).duration(700)}
+          >
             <PlxButton
               title="Continue with Google"
               onPress={() => {}}
@@ -58,9 +69,9 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
               color={useDynamicColors().primaryColor}
               onPress={handlePress.bind(null, 'Email')}
             />
-          </View>
+          </Animated.View>
         </View>
-      </View>
+      </Animated.View>
     </BackgroundGradient>
   );
 }
@@ -78,16 +89,18 @@ const styles = StyleSheet.create({
   headerLogo: {
     height: 40,
     width: 120,
+    alignSelf: 'center',
   },
   headerTitle: {
     color: useDynamicColors().textColor,
     fontSize: 35,
     fontWeight: 'bold',
     letterSpacing: 4,
+    textAlign: 'center',
   },
   gatheringImage: {
-    width: 350,
-    height: 350,
+    width: 400,
+    height: 400,
 
     alignSelf: 'center',
   },
@@ -95,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 150,
+    marginBottom: 50,
   },
   buttonContainer: {
     width: '100%',

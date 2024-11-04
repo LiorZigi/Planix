@@ -1,24 +1,18 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
 import { useDynamicColors } from '../../styles/useDynamicColors';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import PlanixIcon from '../icons/PlanixIcon';
 import TabIcon from '../components/atoms/TabIcon';
 import TabLabel from '../components/atoms/TabLabel';
 import NewEventStackScreen from '../../screens/new-event/NewEventStackScreen';
-import AuthStackScreen from '../../screens/auth/AuthStackScreen';
-import useAuthListener from '../hooks/useAuthListener';
 import DiscoverScreen from '../../screens/discover/DiscoverScreen';
 import FavoritesScreen from '../../screens/favorites/FavoritesScreen';
 import ProfileStackNav from '../../screens/profile/ProfileStackNav';
 
 const Tab = createBottomTabNavigator();
 
-export default function Router() {
-  const { user } = useSelector((state: RootState) => state.user);
+export default function BottomTabs() {
   const dynamicColors = useDynamicColors();
-  useAuthListener();
 
   return (
     <>
@@ -56,13 +50,14 @@ export default function Router() {
         ></Tab.Screen>
 
         <Tab.Screen
-          name=" "
+          name="Create"
           component={NewEventStackScreen}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <TabIcon icon="plus" focused={focused} />
             ),
+            tabBarLabel: () => <TabLabel />,
           }}
         ></Tab.Screen>
         {/* <Tab.Screen
@@ -97,10 +92,8 @@ export default function Router() {
 
         <Tab.Screen
           name="Profile"
-          component={user ? ProfileStackNav : AuthStackScreen}
+          component={ProfileStackNav}
           options={{
-            headerTitle: '',
-            headerShown: !!user,
             headerTitleStyle: {
               color: dynamicColors.textColor,
             },
