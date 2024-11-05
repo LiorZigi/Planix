@@ -1,19 +1,15 @@
 import { Image, ScrollView, StyleSheet, Text } from 'react-native';
 import { globalStyles } from '../../styles/constants';
 import BackgroundGradient from '../../styles/GradientBackground';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import EventCard from '../../core/components/atoms/EventCard';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useEffect, useState } from 'react';
-import { Event } from '../../mocks/events-types/event-types';
 import { useFetchEvents } from '../../core/hooks/useFetchEvents';
+import { Event } from '../../models/Event';
+import { PlanixScreenProps } from '../../core/@planix/types';
 
-interface NewEventScreenProps {
-  navigation: BottomTabNavigationProp<any>;
-}
-
-export default function NewEventScreen({ navigation }: NewEventScreenProps) {
+export default function NewEventScreen({ navigation }: PlanixScreenProps) {
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {

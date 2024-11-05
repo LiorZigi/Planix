@@ -3,14 +3,14 @@ import { StyleSheet, Pressable, Text } from 'react-native';
 import BackgroundGradient from '../../../styles/GradientBackground';
 import { globalStyles } from '../../../styles/constants';
 import { Octicons } from '@expo/vector-icons';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { PlanixNavigationProp, PlanixRoutes } from '../../@planix/types';
 
 interface EventCardProps {
   style?: object | object[];
-  navigation: BottomTabNavigationProp<any>;
+  navigation: PlanixNavigationProp;
   onPress?: () => void;
-  eventName: string;
+  eventName: PlanixRoutes;
   eventEmoji?: string;
   index?: number;
 }
@@ -22,7 +22,7 @@ const EventCard = ({
   eventEmoji,
   index,
 }: EventCardProps) => {
-  const handlePress = (route: string): void => {
+  const handlePress = (route: any): void => {
     navigation.navigate(route);
   };
 
@@ -36,7 +36,7 @@ const EventCard = ({
         bottomColor={useDynamicColors().inputBackgroundColor}
         style={[styles.card, style]}
       >
-        {eventName === 'Custom' ? (
+        {eventName === PlanixRoutes.Custom ? (
           <Octicons
             name="plus"
             size={50}
