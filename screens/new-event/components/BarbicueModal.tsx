@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import NewEventModal from '../../../core/components/organisms/NewEventModal';
 import { useFetchMock } from '../../../core/hooks/useFetchMock';
 import { EventData } from '../../../models/EventData';
+import { PlanixRoutes, PlanixScreenProps } from '../../../core/@planix/types';
 
-const BarbecueModal = () => {
+export default function BarbicueModal({ navigation }: PlanixScreenProps<PlanixRoutes.Barbecue>) {
   const [essemntials, setEssentials] = useState<EventData>();
 
   useEffect(() => {
@@ -19,5 +20,3 @@ const BarbecueModal = () => {
   }, []);
   return <NewEventModal event="barbecue" data={essemntials} />;
 };
-
-export default BarbecueModal;

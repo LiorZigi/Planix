@@ -4,9 +4,11 @@ import BarbicueModal from './components/BarbicueModal';
 import BirthdayModal from './components/BirthdayModal';
 import CampingModal from './components/CampingModal';
 import { useDynamicColors } from '../../styles/useDynamicColors';
-import { PlanixRoutes } from '../../core/@planix/types';
+import { PlanixParamList, PlanixRoutes } from '../../core/@planix/types';
+import PicnicModal from './components/PicnicModal';
+import CustomModal from './components/CustomModal';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<PlanixParamList>();
 
 const NewEventStackScreen = () => {
   return (
@@ -54,7 +56,7 @@ const NewEventStackScreen = () => {
       />
       <Stack.Screen
         name={PlanixRoutes.Custom}
-        component={BarbicueModal}
+        component={CustomModal}
         options={{
           presentation: 'modal',
           headerTitle: 'Custom',
@@ -66,7 +68,7 @@ const NewEventStackScreen = () => {
       />
       <Stack.Screen
         name={PlanixRoutes.Picnic}
-        component={BarbicueModal}
+        component={PicnicModal}
         options={{
           presentation: 'modal',
           headerTitle: 'Picnic',

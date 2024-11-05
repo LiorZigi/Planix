@@ -11,11 +11,11 @@ import AboutTab from './components/AboutTab';
 import Animated from 'react-native-reanimated';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 import PlxButton from '../../core/components/atoms/PlxButton';
-import { PlanixScreenProps } from '../../core/@planix/types';
+import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function PlanixScreen({ navigation, route }: PlanixScreenProps) {
+export default function PlanixScreen({ navigation, route }: PlanixScreenProps<PlanixRoutes.Planix>) {
   const { groupName, members, notifyMembers, data } = route.params;
   const dynamicColors = useDynamicColors();
   const screenOptions: MaterialTopTabNavigationOptions = {

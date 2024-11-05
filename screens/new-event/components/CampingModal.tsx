@@ -1,6 +1,7 @@
+import { PlanixRoutes, PlanixScreenProps } from '../../../core/@planix/types';
 import NewEventModal from '../../../core/components/organisms/NewEventModal';
 
-const CampingModal = () => {
+export default function CampingModal({ navigation }: PlanixScreenProps<PlanixRoutes.Camping>) {
   const dummyData = [
     {
       isChecked: false,
@@ -20,5 +21,3 @@ const CampingModal = () => {
   ];
   return <NewEventModal event='Camping' data={dummyData} />;
 };
-
-export default CampingModal;

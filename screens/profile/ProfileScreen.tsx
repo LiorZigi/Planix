@@ -15,20 +15,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../store/slices/userSlice';
 import { RootState, userState } from '../../store/store';
 import { extractNameFromEmail } from '../../core/utils/extractEmail';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
-interface ProfileScreenProps {
-    navigation: BottomTabNavigationProp<any>;
-    }
-
-export default function ProfileScreen({ navigation }: ProfileScreenProps) {
+export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRoutes.Profile>) {
   const auth = getAuth();
   const { user }: userState = useSelector((state: RootState) => state.user);
   const dynamicColors = useDynamicColors();
   const dispatch = useDispatch();
 
   const handlePress = (): void => {
-    navigation.navigate('Account');
+    navigation.navigate(PlanixRoutes.Account);
   }
 
   const handleLogout = (): void => {

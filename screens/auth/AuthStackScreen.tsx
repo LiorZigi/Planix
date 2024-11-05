@@ -2,9 +2,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import EmailModalScreen from './components/EmailModal';
 import AuthScreen from './AuthScreen';
 import SignupScreen from './components/SignupScreen';
-import { PlanixRoutes } from '../../core/@planix/types';
+import { PlanixParamList, PlanixRoutes } from '../../core/@planix/types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<PlanixParamList>();
 
 const AuthStackScreen = () => {
   return (

@@ -11,6 +11,7 @@ import Animated, {
   FadeOutLeft,
 } from 'react-native-reanimated';
 import PlxButton from '../../core/components/atoms/PlxButton';
+import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
 interface SecondOnboardingProps {
   navigation: any;
@@ -18,9 +19,9 @@ interface SecondOnboardingProps {
 
 export default function SecondOnboarding({
   navigation,
-}: SecondOnboardingProps) {
+}: PlanixScreenProps<PlanixRoutes.SecondOnboarding>) {
   const handlePress = () => {
-    navigation.navigate('AuthStack');
+    navigation.navigate(PlanixRoutes.AuthStack);
   };
 
   return (

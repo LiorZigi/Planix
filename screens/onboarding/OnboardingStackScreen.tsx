@@ -2,14 +2,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FirstOnboarding from './FirstOnboarding';
 import SecondOnboarding from './SecondOnboarding';
 import AuthStackScreen from '../auth/AuthStackScreen';
+import { PlanixParamList, PlanixRoutes } from '../../core/@planix/types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<PlanixParamList>();
 
 export default function OnboardingStackScreen() {
   return (
-    <Stack.Navigator initialRouteName="FirstOnboarding">
+    <Stack.Navigator initialRouteName={PlanixRoutes.FirstOnboarding}>
       <Stack.Screen
-        name="FirstOnboarding"
+        name={PlanixRoutes.FirstOnboarding}
         component={FirstOnboarding}
         options={{
           headerShown: false,
@@ -17,14 +18,14 @@ export default function OnboardingStackScreen() {
         }}
       />
       <Stack.Screen
-        name="SecondOnboarding"
+        name={PlanixRoutes.SecondOnboarding}
         component={SecondOnboarding}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="AuthStack"
+        name={PlanixRoutes.AuthStack}
         component={AuthStackScreen}
         options={{
           headerShown: false,

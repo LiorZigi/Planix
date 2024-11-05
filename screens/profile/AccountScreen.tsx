@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { useDynamicColors } from '../../styles/useDynamicColors';
+import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
-export default function AccountScreen() {
+export default function AccountScreen({ navigation }: PlanixScreenProps<PlanixRoutes.Account>) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Account Screen</Text>

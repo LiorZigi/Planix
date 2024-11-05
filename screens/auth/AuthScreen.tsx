@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
-export default function AuthScreen({ navigation }: PlanixScreenProps) {
+export default function AuthScreen({ navigation }: PlanixScreenProps<PlanixRoutes.AuthScreen | PlanixRoutes.AuthStack>) {
   const handlePress = (route: any): void => {
     navigation.navigate(route);
   };

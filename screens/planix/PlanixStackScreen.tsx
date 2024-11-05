@@ -3,16 +3,16 @@ import { Image, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import PlanixScreen from './PlanixScreen';
 import { useDynamicColors } from '../../styles/useDynamicColors';
-import { PlanixScreenProps } from '../../core/@planix/types';
+import { PlanixParamList, PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<PlanixParamList>();
 
 export default function PlanixStackScreen({ navigation, route }: PlanixScreenProps) {
   const dynamicColors = useDynamicColors();
 
   return (
     <Drawer.Navigator
-      initialRouteName="Planix"
+      initialRouteName={PlanixRoutes.Planix}
       screenOptions={{
         headerStyle: {
           backgroundColor: dynamicColors.topBackgroundColor,
@@ -34,7 +34,7 @@ export default function PlanixStackScreen({ navigation, route }: PlanixScreenPro
       }}
     >
       <Drawer.Screen
-        name="Planix"
+        name={PlanixRoutes.Planix}
         component={PlanixScreen}
         initialParams={route.params}
       />
@@ -42,7 +42,9 @@ export default function PlanixStackScreen({ navigation, route }: PlanixScreenPro
         {
           () => {
             navigation.goBack();
-            return null;
+            return (
+              <></>
+            );
           }
         }
       </Drawer.Screen>
