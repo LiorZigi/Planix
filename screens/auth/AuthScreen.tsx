@@ -1,22 +1,17 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../styles/constants';
 import { globalStyles } from '../../styles/constants';
 import BackgroundGradient from '../../styles/GradientBackground';
 import PlxButton from '../../core/components/atoms/PlxButton';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 import Animated, {
   FadeIn,
   FadeInDown,
   FadeInLeft,
 } from 'react-native-reanimated';
+import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
-interface AuthScreenProps {
-  navigation: BottomTabNavigationProp<any>;
-}
-
-export default function AuthScreen({ navigation }: AuthScreenProps) {
-  const handlePress = (route: string): void => {
+export default function AuthScreen({ navigation }: PlanixScreenProps) {
+  const handlePress = (route: any): void => {
     navigation.navigate(route);
   };
 
@@ -54,20 +49,20 @@ export default function AuthScreen({ navigation }: AuthScreenProps) {
           >
             <PlxButton
               title="Continue with Google"
-              onPress={() => {}}
+              onPress={() => { }}
               color={'#fff'}
               textColor="#000"
             />
             <PlxButton
               title="Continue with Apple"
-              onPress={() => {}}
+              onPress={() => { }}
               color={'#fff'}
               textColor="#000"
             />
             <PlxButton
               title="Continue with Email"
               color={useDynamicColors().primaryColor}
-              onPress={handlePress.bind(null, 'Email')}
+              onPress={handlePress.bind(null, PlanixRoutes.Email)}
             />
           </Animated.View>
         </View>

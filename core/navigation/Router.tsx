@@ -35,7 +35,7 @@ export default function Router() {
             <Stack.Screen
               name="OnboardingStack"
               component={OnboardingStackScreen}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, presentation: 'transparentModal' }}
             />
           </Stack.Navigator>
         </NavigationContainer>

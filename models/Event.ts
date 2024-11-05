@@ -1,4 +1,6 @@
+import { PlanixRoutes } from "../core/@planix/types";
+
 export interface Event {
-  name: string;
+  name: PlanixRoutes;
   emoji?: string;
 }

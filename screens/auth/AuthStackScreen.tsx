@@ -2,21 +2,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import EmailModalScreen from './components/EmailModal';
 import AuthScreen from './AuthScreen';
 import SignupScreen from './components/SignupScreen';
+import { PlanixRoutes } from '../../core/@planix/types';
 
 const Stack = createNativeStackNavigator();
 
 const AuthStackScreen = () => {
   return (
-    <Stack.Navigator initialRouteName="AuthScreen">
+    <Stack.Navigator initialRouteName={PlanixRoutes.AuthScreen}>
       <Stack.Screen
-        name="AuthScreen"
+        name={PlanixRoutes.AuthScreen}
         component={AuthScreen}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="Email"
+        name={PlanixRoutes.Email}
         component={EmailModalScreen}
         options={{
           presentation: 'fullScreenModal',
@@ -24,7 +25,7 @@ const AuthStackScreen = () => {
         }}
       />
       <Stack.Screen
-        name="SignUp"
+        name={PlanixRoutes.SignUp}
         component={SignupScreen}
         options={{
           headerShown: false,
