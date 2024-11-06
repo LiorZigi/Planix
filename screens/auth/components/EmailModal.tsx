@@ -101,14 +101,15 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
         </Pressable>
       </View>
       <KeyboardAvoidingView
-        style={styles.button}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+        style={{ marginTop: 'auto' }}
       >
         <PlxButton
           title="Log in"
           pill={true}
           onPress={handleSignInWithEmailAndPassword}
+          style={styles.button}
         />
       </KeyboardAvoidingView>
     </View>
@@ -162,6 +163,9 @@ const styles = StyleSheet.create({
     color: useDynamicColors().primaryColor,
   },
   button: {
+    width: '100%',
+    alignItems: 'center',
+    alignSelf: 'center',
     marginTop: 'auto',
   },
 });

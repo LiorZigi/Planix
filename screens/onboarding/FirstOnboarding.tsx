@@ -50,9 +50,8 @@ export default function FirstOnboarding({ navigation }: PlanixScreenProps<Planix
       <Animated.View
         entering={FadeInLeft.delay(800).duration(800)}
         exiting={FadeOutLeft.duration(800)}
-        style={styles.button}
       >
-        <PlxButton title="Next" onPress={handlePress} />
+        <PlxButton title="Next" onPress={handlePress} style={styles.button} />
       </Animated.View>
     </Animated.View>
   );
@@ -84,6 +83,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '80%',
+    alignItems: 'center',
     alignSelf: 'center',
   },
 });

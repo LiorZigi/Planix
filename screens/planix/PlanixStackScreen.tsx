@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import PlanixScreen from './PlanixScreen';

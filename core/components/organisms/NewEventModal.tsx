@@ -144,6 +144,7 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
           title="Create Group"
           disabled={isDisabled}
           onPress={handleCreateGroup}
+          style={styles.button}
         />
       </View>
     </KeyboardAvoidingView>
@@ -184,4 +185,9 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: 'flex-end',
   },
+  button: {
+    width: '100%',
+    alignItems: 'center',
+    alignSelf: 'center',
+  }
 });

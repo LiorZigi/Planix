@@ -5,6 +5,7 @@ import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface PlxButtonProps {
   title?: string;
+  style?: any;
   color?: string;
   textColor?: string;
   pill?: boolean;
@@ -16,6 +17,7 @@ interface PlxButtonProps {
 
 const PlxButton = ({
   title,
+  style,
   color = useDynamicColors().primaryColor,
   textColor = useDynamicColors().textColor,
   pill = true,
@@ -24,36 +26,41 @@ const PlxButton = ({
   disabled,
   onPress,
 }: PlxButtonProps) => {
-   const animation = useRef(new Animated.Value(disabled ? 0 : 1)).current;
+  const animation = useRef(new Animated.Value(disabled ? 0 : 1)).current;
 
-    useEffect(() => {
-      Animated.timing(animation, {
-         toValue: disabled ? 0 : 1,
-         duration: 200,
-         useNativeDriver: false,
-      }).start();
-   }, [disabled]);
+  useEffect(() => {
+    Animated.timing(animation, {
+      toValue: disabled ? 0 : 1,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [disabled]);
 
-   const backgroundColor = animation.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['gray', color],
-    });
+  const backgroundColor = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['gray', color],
+  });
 
   return (
-   <Animated.View style={
-      {
-         ...styles.button,
-         backgroundColor: backgroundColor,
-         borderRadius: pill ? 32 : 8,
-      }
-   }>
-    <Pressable
-      disabled={disabled}
-      onPress={onPress}
-    >
-      {icon && <PlanixIcon iconName={icon} size={20} color={iconColor} />}
-      <Text style={{ ...styles.buttonText, color: textColor }}>{title}</Text>
-    </Pressable>
+    <Animated.View style={
+      [
+        styles.button,
+        {
+          backgroundColor: backgroundColor,
+          borderRadius: pill ? 32 : 8,
+        },
+        style
+      ]
+    }>
+      <Pressable
+        disabled={disabled}
+        onPress={onPress}
+        style={style}
+
+      >
+        {icon && <PlanixIcon iconName={icon} size={20} color={iconColor} />}
+        <Text style={{ ...styles.buttonText, color: textColor }}>{title}</Text>
+      </Pressable>
     </Animated.View>
   );
 };
@@ -63,8 +70,8 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     paddingVertical: 16,
     paddingHorizontal: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   buttonText: {
     fontSize: 18,

@@ -52,17 +52,20 @@ export default function AuthScreen({ navigation }: PlanixScreenProps<PlanixRoute
               onPress={() => { }}
               color={'#fff'}
               textColor="#000"
+              style={styles.button}
             />
             <PlxButton
               title="Continue with Apple"
               onPress={() => { }}
               color={'#fff'}
               textColor="#000"
+              style={styles.button}
             />
             <PlxButton
               title="Continue with Email"
               color={useDynamicColors().primaryColor}
               onPress={handlePress.bind(null, PlanixRoutes.Email)}
+              style={styles.button}
             />
           </Animated.View>
         </View>
@@ -109,4 +112,9 @@ const styles = StyleSheet.create({
     width: '100%',
     gap: 8,
   },
+  button: {
+    width: '100%',
+    alignItems: 'center',
+    alignSelf: 'center',
+  }
 });

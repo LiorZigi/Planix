@@ -82,7 +82,7 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
       >
-        <PlxButton title="Signup" pill={true} onPress={handleSignUp} />
+        <PlxButton title="Signup" pill={true} onPress={handleSignUp} style={styles.button} />
       </KeyboardAvoidingView>
     </View>
   );
@@ -136,4 +136,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingHorizontal: 10,
   },
+  button: {
+    width: '100%',
+    alignItems: 'center',
+    alignSelf: 'center',
+  }
 });
