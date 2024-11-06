@@ -14,6 +14,7 @@ import PlxButton from '../../core/components/atoms/PlxButton';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 
 export default function FirstOnboarding({ navigation }: PlanixScreenProps<PlanixRoutes.FirstOnboarding>) {
+  const dynamicColors = useDynamicColors();
 
   const handlePress = () => {
     navigation.navigate(PlanixRoutes.SecondOnboarding);
@@ -51,7 +52,7 @@ export default function FirstOnboarding({ navigation }: PlanixScreenProps<Planix
         entering={FadeInLeft.delay(800).duration(800)}
         exiting={FadeOutLeft.duration(800)}
       >
-        <PlxButton title="Next" onPress={handlePress} style={styles.button} />
+        <PlxButton title="Next" onPress={handlePress} textColor={dynamicColors.buttonTextColor} style={styles.button} />
       </Animated.View>
     </Animated.View>
   );

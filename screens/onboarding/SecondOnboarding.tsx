@@ -20,6 +20,8 @@ interface SecondOnboardingProps {
 export default function SecondOnboarding({
   navigation,
 }: PlanixScreenProps<PlanixRoutes.SecondOnboarding>) {
+  const dynamicColors = useDynamicColors();
+
   const handlePress = () => {
     navigation.navigate(PlanixRoutes.AuthStack);
   };
@@ -56,7 +58,7 @@ export default function SecondOnboarding({
         entering={FadeInLeft.delay(800).duration(800)}
         exiting={FadeOutLeft.duration(800)}
       >
-        <PlxButton title="Next" onPress={handlePress} style={styles.button} />
+        <PlxButton title="Next" onPress={handlePress} textColor={dynamicColors.buttonTextColor} style={styles.button} />
       </Animated.View>
     </Animated.View>
   );

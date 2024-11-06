@@ -9,12 +9,14 @@ export type PlanixParamList = {
       amount: string | number;
     }>;
   };
+  PlanixStack: any;
   CreateEvent: any;
   Discover: any;
   Profile: any;
   Account: any;
   Settings: any;
   Notifications: any;
+  BottomTabs: any;
   AuthScreen: any;
   AuthStack: any;
   OnboardingStack: any;
@@ -33,6 +35,7 @@ export type PlanixParamList = {
 
 export enum PlanixRoutes {
   Planix = 'Planix',
+  PlanixStack = 'PlanixStack',
   CreateEvent = 'CreateEvent',
   Discover = 'Discover',
   Profile = 'Profile',
@@ -41,6 +44,7 @@ export enum PlanixRoutes {
   Notifications = 'Notifications',
   AuthScreen = 'AuthScreen',
   AuthStack = 'AuthStack',
+  BottomTabs = 'BottomTabs',
   OnboardingStack = 'OnboardingStack',
   FirstOnboarding = 'FirstOnboarding',
   SecondOnboarding = 'SecondOnboarding',

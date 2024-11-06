@@ -6,24 +6,26 @@ import BottomTabs from './BottomTabs';
 import PlanixStackScreen from '../../screens/planix/PlanixStackScreen';
 import OnboardingStackScreen from '../../screens/onboarding/OnboardingStackScreen';
 import useAuthListener from '../hooks/useAuthListener';
+import { PlanixParamList, PlanixRoutes } from '../@planix/types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<PlanixParamList>();
 
 export default function Router() {
   const { user } = useSelector((state: RootState) => state.user);
   useAuthListener();
+
   return (
     <>
       {user ? (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="BottomTabs">
+          <Stack.Navigator initialRouteName={PlanixRoutes.BottomTabs}>
             <Stack.Screen
-              name="BottomTabs"
+              name={PlanixRoutes.BottomTabs}
               component={BottomTabs}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="PlanixStack"
+              name={PlanixRoutes.PlanixStack}
               component={PlanixStackScreen}
               options={{ headerShown: false }}
             />
@@ -31,9 +33,9 @@ export default function Router() {
         </NavigationContainer>
       ) : (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="OnboardingStack">
+          <Stack.Navigator initialRouteName={PlanixRoutes.OnboardingStack}>
             <Stack.Screen
-              name="OnboardingStack"
+              name={PlanixRoutes.OnboardingStack}
               component={OnboardingStackScreen}
               options={{ headerShown: false, presentation: 'transparentModal' }}
             />
