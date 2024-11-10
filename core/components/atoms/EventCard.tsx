@@ -32,8 +32,8 @@ const EventCard = ({
       style={styles.cardShadow}
     >
       <BackgroundGradient
-        topColor={useDynamicColors().inputBackgroundColor}
-        bottomColor={useDynamicColors().inputBackgroundColor}
+        topColor={useDynamicColors().cardTopColor}
+        bottomColor={useDynamicColors().cardBottomColor}
         style={[styles.card, style]}
       >
         {eventName === PlanixRoutes.Custom ? (
@@ -52,7 +52,7 @@ const EventCard = ({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 20,
+    borderRadius: 16,
     padding: 16,
   },
   cardShadow: {
@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    shadowOpacity: 0.4,
-    shadowRadius: 7,
-    elevation: 5,
+    // shadowOpacity: 0.4,
+    // shadowRadius: 7,
+    // elevation: 5,
   },
   cardText: {
     ...globalStyles.text,

@@ -14,9 +14,9 @@ const MinusButton = ({ onPress }: MinusButtonProps) => {
       <View style={styles.circle}>
         <Octicons
           name="dash"
-          size={Platform.OS === 'ios' ? 15 : 20}
-          color={useDynamicColors().textColor}
-          style={{ opacity: 1 }}
+          size={Platform.OS === 'ios' ? 20 : 20}
+          color={useDynamicColors().buttonTextColor}
+          style={{ opacity: 1, fontWeight: 'bold' }}
         />
       </View>
     </Pressable>

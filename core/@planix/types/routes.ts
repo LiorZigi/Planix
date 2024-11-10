@@ -10,6 +10,8 @@ export type PlanixParamList = {
     }>;
   };
   PlanixStack: any;
+  PlanixInner: any;
+  ChooseProduct: any;
   CreateEvent: any;
   Discover: any;
   Profile: any;
@@ -36,6 +38,8 @@ export type PlanixParamList = {
 export enum PlanixRoutes {
   Planix = 'Planix',
   PlanixStack = 'PlanixStack',
+  PlanixInner = 'PlanixInner',
+  ChooseProduct = 'ChooseProduct',
   CreateEvent = 'CreateEvent',
   Discover = 'Discover',
   Profile = 'Profile',

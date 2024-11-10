@@ -1,8 +1,8 @@
 import { Image, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import PlanixScreen from './PlanixScreen';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 import { PlanixParamList, PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
+import PlanixInnerScreen from './PlanixInnerScreen';
 
 const Drawer = createDrawerNavigator<PlanixParamList>();
 
@@ -11,7 +11,7 @@ export default function PlanixStackScreen({ navigation, route }: PlanixScreenPro
 
   return (
     <Drawer.Navigator
-      initialRouteName={PlanixRoutes.Planix}
+      initialRouteName={PlanixRoutes.PlanixInner}
       screenOptions={{
         headerStyle: {
           backgroundColor: dynamicColors.topBackgroundColor,
@@ -33,9 +33,10 @@ export default function PlanixStackScreen({ navigation, route }: PlanixScreenPro
       }}
     >
       <Drawer.Screen
-        name={PlanixRoutes.Planix}
-        component={PlanixScreen}
+        name={PlanixRoutes.PlanixInner}
+        component={PlanixInnerScreen}
         initialParams={route.params}
+        options={{ drawerLabel: 'Planix' }}
       />
       <Drawer.Screen name="Back">
         {

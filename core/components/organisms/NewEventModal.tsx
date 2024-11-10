@@ -37,10 +37,12 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
   const navigation = useNavigation<any>();
   const offset = useSharedValue<number>(0);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [value, setValue] = useState<string>('');
+  const [groupName, setGroupName] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
+  const [date, setDate] = useState<string>('');
   const [checked, setChecked] = useState<boolean>(false);
   const [members, setMembers] = useState<number>(2);
-  const isDisabled = value.trim() === '';
+  const isDisabled = groupName.trim() === '';
   const screenOptions: MaterialTopTabNavigationOptions = {
     tabBarLabelStyle: { fontSize: 15, textTransform: 'capitalize' },
     tabBarStyle: { backgroundColor: dynamicColors.inputBackgroundColor },
@@ -55,9 +57,17 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
     setChecked(!checked);
   };
 
-  const handleInputChanged = (text: string): void => {
-    setValue(text);
+  const handleGroupNameChanged = (text: string): void => {
+    setGroupName(text);
   };
+
+  const handleLocationChanged = (text: string): void => {
+    setLocation(text);
+  }
+
+  const handleDateChanged = (text: string): void => {
+    setDate(text);
+  }
 
   const handleNumberPickerChange = (value: number): void => {
     setMembers(value);
@@ -65,7 +75,7 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
 
   const handlePanelPress = (): void => {
     setIsExpanded(!isExpanded);
-    offset.value = withSpring(offset.value === 0 ? -220 : 0, {
+    offset.value = withSpring(offset.value === 0 ? -300 : 0, {
       damping: 20,
       stiffness: 100,
     });
@@ -75,7 +85,7 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
     navigation.goBack();
     navigation.navigate('PlanixStack', {
       event: event,
-      groupName: value,
+      groupName: groupName,
       members: members,
       notifyMembers: checked,
     });
@@ -93,10 +103,20 @@ const NewEventModal = ({ event, data }: NewEventModalProps) => {
             Group Name
           </Text>
           <Input
-            value={value}
+            value={groupName}
             textAlign="center"
-            onChangeText={handleInputChanged}
+            onChangeText={handleGroupNameChanged}
           />
+        </View>
+        <View style={styles.detailsContainer}>
+          <View style={styles.locationContainer}>
+            <Text style={{ ...globalStyles.text, alignSelf: 'center' }}>Location</Text>
+            <Input value={location} textAlign="center" onChangeText={handleLocationChanged} />
+          </View>
+          <View style={styles.dateContainer}>
+            <Text style={{ ...globalStyles.text, alignSelf: 'center' }}>Date</Text>
+            <Input value={date} textAlign="center" onChangeText={handleDateChanged} />
+          </View>
         </View>
         <View style={styles.membersContainer}>
           <View style={styles.inputContainer}>
@@ -162,6 +182,19 @@ const styles = StyleSheet.create({
   groupNameContainer: {
     paddingHorizontal: 16,
     gap: 10,
+  },
+  detailsContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'center',
+  },
+  locationContainer: {
+    gap: 10,
+    width: '45%',
+  },
+  dateContainer: {
+    gap: 10,
+    width: '45%',
   },
   membersContainer: {
     padding: 16,

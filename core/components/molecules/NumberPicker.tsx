@@ -1,9 +1,9 @@
-import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import PlusButton from '../atoms/PlusButton';
 import MinusButton from '../atoms/MinusButton';
 import Input from '../atoms/Input';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { useState } from 'react';
 
 interface NumberPickerProps {
   value: number;
@@ -12,7 +12,7 @@ interface NumberPickerProps {
 }
 
 const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
-  const [number, setNumber] = React.useState(value);
+  const [number, setNumber] = useState(value);
 
   const incrementNumber = () => {
     setNumber(number + 1);

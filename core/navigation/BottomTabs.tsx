@@ -91,7 +91,7 @@ export default function BottomTabs() {
         ></Tab.Screen>
 
         <Tab.Screen
-          name="Profile"
+          name="ProfileScreen"
           component={ProfileStackNav}
           options={{
             headerTitleStyle: {

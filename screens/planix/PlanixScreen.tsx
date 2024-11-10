@@ -35,6 +35,10 @@ export default function PlanixScreen({ navigation, route }: PlanixScreenProps<Pl
     tabBarActiveTintColor: dynamicColors.textColor,
   };
 
+  const handleChooseProduct = (): void => {
+    navigation.navigate(PlanixRoutes.ChooseProduct);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.groupDetailsContainer}>
@@ -56,8 +60,8 @@ export default function PlanixScreen({ navigation, route }: PlanixScreenProps<Pl
             </Text>
           </View>
           <View style={{ alignSelf: 'center', flexDirection: 'row', gap: 10 }}>
-            <PlxButton title="Choose Product" />
-            <PlxButton title="  Add  " />
+            <PlxButton title="Choose Product" onPress={handleChooseProduct} textColor={dynamicColors.buttonTextColor} />
+            <PlxButton title="  Add  " textColor={dynamicColors.buttonTextColor} />
           </View>
           <Animated.View style={styles.tabsContainer}>
             <Tab.Navigator screenOptions={screenOptions}>

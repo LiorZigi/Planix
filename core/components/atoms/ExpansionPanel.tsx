@@ -18,7 +18,7 @@ const ExpansionPanel = ({ title, children, onPress }: ExpansionPanelProps) => {
     !expanded &&
       Animated.timing(animation, {
         toValue: 1,
-         duration: 600,
+        duration: 800,
         useNativeDriver: false,
       }).start();
     expanded &&
@@ -28,7 +28,7 @@ const ExpansionPanel = ({ title, children, onPress }: ExpansionPanelProps) => {
         useNativeDriver: false,
       }).start();
 
-      onPress && onPress();
+    onPress && onPress();
   };
 
   const panelHeight = animation.interpolate({
@@ -65,9 +65,9 @@ export default ExpansionPanel;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: useDynamicColors().inputBackgroundColor,
-    borderRadius: 8,
+    borderRadius: 12,
     marginBottom: 16,
-    padding: 12,
+    padding: 14,
     overflow: 'hidden',
   },
   title: {

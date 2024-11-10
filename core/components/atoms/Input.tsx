@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     // borderColor: useDynamicColors().inputBorderColor,
     backgroundColor: useDynamicColors().inputBackgroundColor,
     // borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 12,
     paddingHorizontal: 10,
     marginBottom: 10,
   },

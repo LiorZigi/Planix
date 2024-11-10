@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Platform } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
-import { colors } from '../../../styles/constants';
 import { useDynamicColors } from '../../../styles/useDynamicColors';
 
 interface PlusButtonProps {
@@ -14,9 +13,9 @@ const PlusButton = ({ onPress }: PlusButtonProps) => {
       <View style={styles.circle}>
         <Octicons
           name="plus"
-          size={Platform.OS === 'ios' ? 15 : 20}
-          color={useDynamicColors().textColor}
-          style={{ opacity: 1 }}
+          size={Platform.OS === 'ios' ? 20 : 20}
+          color={useDynamicColors().buttonTextColor}
+          style={{ opacity: 1, fontWeight: 'bold' }}
         />
       </View>
     </Pressable>
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     alignItems: 'center',
-      justifyContent: 'center',
+    justifyContent: 'center',
   },
   circle: {
     width: 24,
