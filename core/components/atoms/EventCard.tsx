@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, Pressable, Text } from 'react-native';
 import BackgroundGradient from '../../../styles/GradientBackground';
 import { globalStyles } from '../../../styles/constants';
@@ -23,7 +22,7 @@ const EventCard = ({
   index,
 }: EventCardProps) => {
   const handlePress = (route: any): void => {
-    navigation.navigate(route);
+    navigation.navigate(route, { eventType: eventName });
   };
 
   return (
@@ -32,19 +31,26 @@ const EventCard = ({
       style={styles.cardShadow}
     >
       <BackgroundGradient
-        topColor={useDynamicColors().cardTopColor}
-        bottomColor={useDynamicColors().cardBottomColor}
+        topColor={useDynamicColors().inputBackgroundColor}
+        bottomColor={useDynamicColors().inputBackgroundColor}
         style={[styles.card, style]}
       >
         {eventName === PlanixRoutes.Custom ? (
-          <Octicons
-            name="plus"
-            size={50}
-            color={useDynamicColors().textColor}
-          />
-        ) : null}
-        <Text style={styles.eventEmojis}>{eventEmoji}</Text>
-        <Text style={styles.cardText}>{eventName}</Text>
+          <>
+            <Octicons
+              name="plus"
+              size={50}
+              color={useDynamicColors().textColor}
+            />
+            <Text style={styles.cardText}>{eventName}</Text>
+          </>
+        ) : (
+          <>
+            <Text style={styles.eventEmojis}>{eventEmoji}</Text>
+            <Text style={styles.cardText}>{eventName}</Text>
+          </>
+        )}
+
       </BackgroundGradient>
     </Pressable>
   );
@@ -52,7 +58,7 @@ const EventCard = ({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 16,
+    borderRadius: 20,
     padding: 16,
   },
   cardShadow: {
@@ -61,8 +67,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    // shadowOpacity: 0.4,
-    // shadowRadius: 7,
+    // shadowOpacity: 0.2,
+    // shadowRadius: 3,
     // elevation: 5,
   },
   cardText: {

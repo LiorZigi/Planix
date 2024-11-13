@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Platform, StatusBar, StyleSheet } from 'react-native';
+import { Image, Platform, StatusBar, StyleSheet } from 'react-native';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 import PlanixIcon from '../icons/PlanixIcon';
 import TabIcon from '../components/atoms/TabIcon';
@@ -19,7 +19,7 @@ export default function BottomTabs() {
       <StatusBar animated backgroundColor={dynamicColors.textColor} />
       <Tab.Navigator
         screenOptions={{
-          // animation: 'shift',
+          animation: 'shift',
           tabBarHideOnKeyboard: true,
           tabBarStyle: {
             display: 'flex',
@@ -94,6 +94,9 @@ export default function BottomTabs() {
           name="ProfileScreen"
           component={ProfileStackNav}
           options={{
+            headerTitle(props) {
+              return <Image style={styles.logo} source={require('../../assets/Planix.png')} />;
+            },
             headerTitleStyle: {
               color: dynamicColors.textColor,
             },
@@ -121,5 +124,10 @@ const styles = StyleSheet.create({
     opacity: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  logo: {
+    width: 100,
+    height: 40,
+    resizeMode: 'contain',
   },
 });

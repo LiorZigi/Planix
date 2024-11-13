@@ -26,13 +26,20 @@ export type PlanixParamList = {
   SecondOnboarding: any;
   Email: any;
   SignUp: any;
-  Barbecue: any;
-  Birthday: any;
-  Custom: any;
-  Camping: any;
-  BachelorParty: any;
-  Picnic: any;
+  Barbecue: EventSetupParamList;
+  Birthday: EventSetupParamList;
+  Custom: EventSetupParamList;
+  Camping: EventSetupParamList;
+  BachelorParty: EventSetupParamList;
+  Picnic: EventSetupParamList;
+  NewEventSetupStackScreen: any;
+  MembersListSetupScreen: any;
+  ProductsListSetupScreen: any;
   Back: any;
+};
+
+export type EventSetupParamList = {
+  eventType: string;
 };
 
 export enum PlanixRoutes {
@@ -60,5 +67,8 @@ export enum PlanixRoutes {
   Camping = 'Camping',
   BachelorParty = 'BachelorParty',
   Picnic = 'Picnic',
+  NewEventSetupStackScreen = 'NewEventSetupStackScreen',
+  MembersListSetupScreen = 'MembersListSetupScreen',
+  ProductsListSetupScreen = 'ProductsListSetupScreen',
   Back = 'Back',
 }

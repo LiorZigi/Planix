@@ -22,6 +22,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
 import { fetchUser, setUser } from '../../../store/slices/userSlice';
+import { PlanixRoutes } from '../../../core/@planix/types';
 
 interface EmailModalProps {
   navigation: any;
@@ -38,7 +39,7 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
       dispatch(fetchUser());
     }
     if (user) {
-      navigation.navigate('Create');
+      navigation.navigate(PlanixRoutes.CreateEvent);
     }
   }, [status, user, dispatch, navigation]);
 
@@ -49,7 +50,7 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
         const user: User = userCredential.user;
         dispatch(setUser(user));
         navigation.goBack();
-        navigation.navigate('Create');
+        navigation.navigate(PlanixRoutes.CreateEvent);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -60,7 +61,7 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
 
   const handleSignUp = () => {
     navigation.goBack();
-    navigation.navigate('SignUp');
+    navigation.navigate(PlanixRoutes.SignUp);
   };
 
   return (

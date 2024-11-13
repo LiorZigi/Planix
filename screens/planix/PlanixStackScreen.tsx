@@ -27,9 +27,7 @@ export default function PlanixStackScreen({ navigation, route }: PlanixScreenPro
           color: dynamicColors.textColor,
         },
         drawerActiveTintColor: dynamicColors.textColor,
-        sceneContainerStyle: {
-          backgroundColor: dynamicColors.topBackgroundColor,
-        },
+
       }}
     >
       <Drawer.Screen

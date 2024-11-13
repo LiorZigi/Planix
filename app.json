@@ -3,6 +3,7 @@
     "name": "Planix",
     "slug": "Planix",
     "version": "1.0.0",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "icon": "./assets/Planix.png",
     "userInterfaceStyle": "automatic",

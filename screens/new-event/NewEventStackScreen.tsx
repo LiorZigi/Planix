@@ -1,12 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NewEventScreen from './NewEventScreen';
-import BarbicueModal from './components/BarbicueModal';
-import BirthdayModal from './components/BirthdayModal';
-import CampingModal from './components/CampingModal';
 import { useDynamicColors } from '../../styles/useDynamicColors';
 import { PlanixParamList, PlanixRoutes } from '../../core/@planix/types';
-import PicnicModal from './components/PicnicModal';
-import CustomModal from './components/CustomModal';
+import EventSetupStackScreen from '../event-setup/EventSetupStackScreen';
 
 const Stack = createNativeStackNavigator<PlanixParamList>();
 
@@ -20,10 +16,10 @@ const NewEventStackScreen = () => {
       />
       <Stack.Screen
         name={PlanixRoutes.Barbecue}
-        component={BarbicueModal}
+        component={EventSetupStackScreen}
         options={{
-          presentation: 'modal',
-          headerTitle: 'Barbecue',
+          presentation: 'transparentModal',
+          headerTitle: PlanixRoutes.Barbecue,
           headerTitleStyle: { color: useDynamicColors().textColor },
           headerStyle: {
             backgroundColor: useDynamicColors().topBackgroundColor,
@@ -32,10 +28,10 @@ const NewEventStackScreen = () => {
       />
       <Stack.Screen
         name={PlanixRoutes.Birthday}
-        component={BirthdayModal}
+        component={EventSetupStackScreen}
         options={{
-          presentation: 'modal',
-          headerTitle: 'Birthday',
+          presentation: 'transparentModal',
+          headerTitle: PlanixRoutes.Birthday,
           headerTitleStyle: { color: useDynamicColors().textColor },
           headerStyle: {
             backgroundColor: useDynamicColors().topBackgroundColor,
@@ -44,10 +40,10 @@ const NewEventStackScreen = () => {
       />
       <Stack.Screen
         name={PlanixRoutes.Camping}
-        component={CampingModal}
+        component={EventSetupStackScreen}
         options={{
-          presentation: 'modal',
-          headerTitle: 'Camping',
+          presentation: 'transparentModal',
+          headerTitle: PlanixRoutes.Camping,
           headerTitleStyle: { color: useDynamicColors().textColor },
           headerStyle: {
             backgroundColor: useDynamicColors().topBackgroundColor,
@@ -56,10 +52,10 @@ const NewEventStackScreen = () => {
       />
       <Stack.Screen
         name={PlanixRoutes.Custom}
-        component={CustomModal}
+        component={EventSetupStackScreen}
         options={{
-          presentation: 'modal',
-          headerTitle: 'Custom',
+          presentation: 'transparentModal',
+          headerTitle: PlanixRoutes.Custom,
           headerTitleStyle: { color: useDynamicColors().textColor },
           headerStyle: {
             backgroundColor: useDynamicColors().topBackgroundColor,
@@ -68,10 +64,22 @@ const NewEventStackScreen = () => {
       />
       <Stack.Screen
         name={PlanixRoutes.Picnic}
-        component={PicnicModal}
+        component={EventSetupStackScreen}
         options={{
-          presentation: 'modal',
-          headerTitle: 'Picnic',
+          presentation: 'transparentModal',
+          headerTitle: PlanixRoutes.Picnic,
+          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerStyle: {
+            backgroundColor: useDynamicColors().topBackgroundColor,
+          },
+        }}
+      />
+      <Stack.Screen
+        name={PlanixRoutes.BachelorParty}
+        component={EventSetupStackScreen}
+        options={{
+          presentation: 'transparentModal',
+          headerTitle: PlanixRoutes.BachelorParty,
           headerTitleStyle: { color: useDynamicColors().textColor },
           headerStyle: {
             backgroundColor: useDynamicColors().topBackgroundColor,

@@ -7,10 +7,12 @@ import PlanixStackScreen from '../../screens/planix/PlanixStackScreen';
 import OnboardingStackScreen from '../../screens/onboarding/OnboardingStackScreen';
 import useAuthListener from '../hooks/useAuthListener';
 import { PlanixParamList, PlanixRoutes } from '../@planix/types';
+import { useDynamicColors } from '../../styles/useDynamicColors';
 
 const Stack = createNativeStackNavigator<PlanixParamList>();
 
 export default function Router() {
+  const dynamicColors = useDynamicColors();
   const { user } = useSelector((state: RootState) => state.user);
   useAuthListener();
 
@@ -18,7 +20,9 @@ export default function Router() {
     <>
       {user ? (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName={PlanixRoutes.BottomTabs}>
+          <Stack.Navigator initialRouteName={PlanixRoutes.BottomTabs} screenOptions={{
+            contentStyle: { backgroundColor: dynamicColors.bottomBackgroundColor },
+          }}>
             <Stack.Screen
               name={PlanixRoutes.BottomTabs}
               component={BottomTabs}
@@ -33,7 +37,9 @@ export default function Router() {
         </NavigationContainer>
       ) : (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName={PlanixRoutes.OnboardingStack}>
+          <Stack.Navigator initialRouteName={PlanixRoutes.OnboardingStack} screenOptions={{
+            contentStyle: { backgroundColor: dynamicColors.bottomBackgroundColor },
+          }}>
             <Stack.Screen
               name={PlanixRoutes.OnboardingStack}
               component={OnboardingStackScreen}

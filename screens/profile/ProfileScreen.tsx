@@ -16,6 +16,7 @@ import { clearUser } from '../../store/slices/userSlice';
 import { RootState, userState } from '../../store/store';
 import { extractNameFromEmail } from '../../core/utils/extractEmail';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
+import OuterCard from '../../core/components/atoms/OuterCard';
 
 export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRoutes.Profile>) {
   const auth = getAuth();
@@ -66,7 +67,7 @@ export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRo
           </Text>
         </View>
 
-        <View style={styles.buttonSection}>
+        <OuterCard style={styles.buttonSection}>
           <Text style={styles.sections}>Settings</Text>
           <SectionButton
             label="Account"
@@ -95,7 +96,7 @@ export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRo
             iconRightSize={36}
             onPress={handleLogout}
           ></SectionButton>
-        </View>
+        </OuterCard>
       </ScrollView>
     </BackgroundGradient>
   );
@@ -117,6 +118,8 @@ const styles = StyleSheet.create({
   },
   buttonSection: {
     flex: 2,
+    marginTop: 20,
+    backgroundColor: useDynamicColors().cardTopColor,
   },
   avatarContainer: {
     width: 70,

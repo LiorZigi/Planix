@@ -6,6 +6,6 @@ export function useFetchEvents(): Promise<Event[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(eventsTypes);
-    }, 1000);
+    }, 0);
   });
 }
