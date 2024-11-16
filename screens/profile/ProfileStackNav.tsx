@@ -1,13 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProfileScreen from "./ProfileScreen";
 import AccountScreen from "./AccountScreen";
-import { useDynamicColors } from "../../styles/useDynamicColors";
 import { PlanixParamList, PlanixRoutes } from "../../core/@planix/types";
+import { useSelector } from "react-redux";
+import { selectTheme } from "../../store/selectors/themeSelectors";
 
 const Stack = createNativeStackNavigator<PlanixParamList>();
 
 export default function ProfileStackNav() {
-    const colors = useDynamicColors();
+    const theme = useSelector(selectTheme);
 
     return (
         <Stack.Navigator initialRouteName={PlanixRoutes.Profile}>
@@ -25,7 +26,7 @@ export default function ProfileStackNav() {
                     {
                         title: 'Account',
                         headerStyle: {
-                            backgroundColor: colors.topBackgroundColor,
+                            backgroundColor: theme.topBackgroundColor,
                         },
                         headerTintColor: 'white',
                         headerTitleStyle: {

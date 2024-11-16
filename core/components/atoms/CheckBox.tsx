@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Animated, Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 interface CheckboxProps {
   checked: boolean;
@@ -10,6 +11,7 @@ interface CheckboxProps {
 }
 
 const Checkbox = ({ checked, onPress, style }: CheckboxProps) => {
+  const theme = useSelector(selectTheme);
   const [scale] = useState(new Animated.Value(checked ? 1 : 0));
 
   const handlePress = () => {
@@ -35,7 +37,7 @@ const Checkbox = ({ checked, onPress, style }: CheckboxProps) => {
           height: 24,
           borderRadius: 12,
           borderWidth: 2,
-          borderColor: useDynamicColors().primaryColor,
+          borderColor: theme.primaryColor,
           justifyContent: 'center',
           alignItems: 'center',
           ...style,
@@ -46,7 +48,7 @@ const Checkbox = ({ checked, onPress, style }: CheckboxProps) => {
             width: 16,
             height: 16,
             borderRadius: 8,
-            backgroundColor: useDynamicColors().primaryColor,
+            backgroundColor: theme.primaryColor,
             transform: [{ scale }],
           }}
         />

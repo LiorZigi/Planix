@@ -1,12 +1,14 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { globalStyles } from '../../../styles/constants';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 export default function AboutTab() {
+  const theme = useSelector(selectTheme);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>About</Text>
-      <Text style={styles.description}>
+      <Text style={[styles.title, { color: theme.textColor }]}>About</Text>
+      <Text style={[styles.description, { color: theme.textColor }]}>
         Planix is a mobile application that helps you plan and organize events
         with your friends and family. You can create groups, add members, and
         plan events together. Planix also helps you create shopping lists and
@@ -18,16 +20,14 @@ export default function AboutTab() {
 
 const styles = StyleSheet.create({
   container: {
-   ...globalStyles.container
+    ...globalStyles.container
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: useDynamicColors().textColor,
   },
   description: {
     fontSize: 16,
-    color: useDynamicColors().textColor,
   },
 });

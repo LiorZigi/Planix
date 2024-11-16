@@ -1,6 +1,5 @@
 import { Image, StyleSheet, Text } from 'react-native';
 import { globalStyles } from '../../styles/constants';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import Animated, {
   FadeIn,
   FadeInDown,
@@ -12,6 +11,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import PlxButton from '../../core/components/atoms/PlxButton';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../store/selectors/themeSelectors';
 
 interface SecondOnboardingProps {
   navigation: any;
@@ -20,14 +21,14 @@ interface SecondOnboardingProps {
 export default function SecondOnboarding({
   navigation,
 }: PlanixScreenProps<PlanixRoutes.SecondOnboarding>) {
-  const dynamicColors = useDynamicColors();
+  const theme = useSelector(selectTheme);
 
   const handlePress = () => {
     navigation.navigate(PlanixRoutes.AuthStack);
   };
 
   return (
-    <Animated.View style={styles.container}>
+    <Animated.View style={[styles.container, { backgroundColor: theme.bottomBackgroundColor }]}>
       <Animated.View
         entering={FadeInLeft.duration(800)}
         exiting={FadeOutLeft.duration(800)}
@@ -42,7 +43,7 @@ export default function SecondOnboarding({
             style={{ height: 40, width: 100, alignSelf: 'center' }}
           />
         </Animated.View>
-        <Text style={styles.title}>All your plans, in one place</Text>
+        <Text style={[styles.title, { color: theme.textColor }]}>All your plans, in one place</Text>
       </Animated.View>
       <Animated.View
         style={styles.imageContainer}
@@ -58,7 +59,7 @@ export default function SecondOnboarding({
         entering={FadeInLeft.delay(800).duration(800)}
         exiting={FadeOutLeft.duration(800)}
       >
-        <PlxButton title="Next" onPress={handlePress} textColor={dynamicColors.buttonTextColor} style={styles.button} />
+        <PlxButton title="Next" onPress={handlePress} textColor={theme.buttonTextColor} style={styles.button} />
       </Animated.View>
     </Animated.View>
   );
@@ -76,7 +77,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 42,
     fontWeight: 'bold',
-    color: useDynamicColors().textColor,
   },
   imageContainer: {
     alignSelf: 'center',

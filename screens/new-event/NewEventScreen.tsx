@@ -2,15 +2,17 @@ import { Image, ScrollView, StyleSheet, Text } from 'react-native';
 import { globalStyles } from '../../styles/constants';
 import BackgroundGradient from '../../styles/GradientBackground';
 import EventCard from '../../core/components/atoms/EventCard';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useEffect, useState } from 'react';
 import { useFetchEvents } from '../../core/hooks/useFetchEvents';
 import { Event } from '../../models/Event';
 import { PlanixScreenProps } from '../../core/@planix/types';
 import OuterCard from '../../core/components/atoms/OuterCard';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../store/selectors/themeSelectors';
 
 export default function NewEventScreen({ navigation }: PlanixScreenProps) {
+  const theme = useSelector(selectTheme);
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
@@ -27,8 +29,8 @@ export default function NewEventScreen({ navigation }: PlanixScreenProps) {
 
   return (
     <BackgroundGradient
-      topColor={useDynamicColors().topBackgroundColor}
-      bottomColor={useDynamicColors().bottomBackgroundColor}
+      topColor={theme.topBackgroundColor}
+      bottomColor={theme.bottomBackgroundColor}
     >
       <ScrollView style={styles.container}>
         <Image
@@ -36,11 +38,11 @@ export default function NewEventScreen({ navigation }: PlanixScreenProps) {
           source={require('../../assets/Planix.png')}
         ></Image>
 
-        <Text style={styles.text}>
+        <Text style={[styles.text, { color: theme.textColor }]}>
           Choose the kind of event you'd like to create
         </Text>
         <Animated.View entering={FadeInDown} >
-          <OuterCard style={styles.eventsContainer}>
+          <OuterCard style={[styles.eventsContainer, { backgroundColor: theme.cardTopColor }]}>
             {events.map((event, index) => (
               <EventCard
                 key={index}
@@ -48,7 +50,7 @@ export default function NewEventScreen({ navigation }: PlanixScreenProps) {
                 navigation={navigation}
                 eventName={event.name}
                 eventEmoji={event.emoji}
-                style={styles.cardContainer}
+                style={[styles.cardContainer, { borderColor: theme.borderColor }]}
               />
             ))}
           </OuterCard>
@@ -72,7 +74,6 @@ const styles = StyleSheet.create({
   },
   text: {
     ...globalStyles.text,
-    color: useDynamicColors().textColor,
   },
   eventsContainer: {
     ...globalStyles.container,
@@ -82,7 +83,6 @@ const styles = StyleSheet.create({
     padding: 20,
     gap: 20,
     marginTop: 40,
-    backgroundColor: useDynamicColors().cardTopColor,
   },
   cardContainer: {
     height: 150,
@@ -91,6 +91,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 0,
-    borderColor: useDynamicColors().borderColor,
   },
 });

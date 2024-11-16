@@ -2,23 +2,26 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../../styles/constants';
 import BackgroundGradient from '../../styles/GradientBackground';
 import PlxButton from '../../core/components/atoms/PlxButton';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import Animated, {
   FadeIn,
   FadeInDown,
   FadeInLeft,
 } from 'react-native-reanimated';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
+import { selectTheme } from '../../store/selectors/themeSelectors';
+import { useSelector } from 'react-redux';
 
 export default function AuthScreen({ navigation }: PlanixScreenProps<PlanixRoutes.AuthScreen | PlanixRoutes.AuthStack>) {
+  const theme = useSelector(selectTheme);
+
   const handlePress = (route: any): void => {
     navigation.navigate(route);
   };
 
   return (
     <BackgroundGradient
-      topColor={useDynamicColors().topBackgroundColor}
-      bottomColor={useDynamicColors().bottomBackgroundColor}
+      topColor={theme.topBackgroundColor}
+      bottomColor={theme.bottomBackgroundColor}
     >
       <Animated.View style={styles.container} entering={FadeIn}>
         <Animated.View style={styles.header} entering={FadeIn}>
@@ -31,8 +34,8 @@ export default function AuthScreen({ navigation }: PlanixScreenProps<PlanixRoute
           style={{ gap: 10 }}
           entering={FadeInLeft.duration(600).stiffness(3)}
         >
-          <Text style={styles.headerTitle}>Let's get Planix!</Text>
-          <Text style={[globalStyles.text, { textAlign: 'center' }]}>
+          <Text style={[styles.headerTitle, { color: theme.textColor }]}>Let's get Planix!</Text>
+          <Text style={[globalStyles.text, { textAlign: 'center', color: theme.textColor }]}>
             Please choose how you want to continue setting up your account.
           </Text>
         </Animated.View>
@@ -63,7 +66,7 @@ export default function AuthScreen({ navigation }: PlanixScreenProps<PlanixRoute
             />
             <PlxButton
               title="Continue with Email"
-              color={useDynamicColors().primaryColor}
+              color={theme.primaryColor}
               onPress={handlePress.bind(null, PlanixRoutes.Email)}
               style={styles.button}
             />
@@ -90,7 +93,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   headerTitle: {
-    color: useDynamicColors().textColor,
     fontSize: 35,
     fontWeight: 'bold',
     letterSpacing: 4,

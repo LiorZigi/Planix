@@ -12,14 +12,16 @@ import { globalStyles } from '../../../styles/constants';
 import PlxButton from '../../../core/components/atoms/PlxButton';
 import Input from '../../../core/components/atoms/Input';
 import PlanixIcon from '../../../core/icons/PlanixIcon';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
+import { useSelector } from 'react-redux';
 
 interface SignupScreenProps {
   navigation: any;
 }
 
 const SignupScreen = ({ navigation }: SignupScreenProps) => {
+  const theme = useSelector(selectTheme);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -39,12 +41,12 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.topBackgroundColor }]}>
       <Pressable style={styles.close} onPress={() => navigation.goBack()}>
         <PlanixIcon
           iconName="close"
           size={32}
-          color={useDynamicColors().primaryColor}
+          color={theme.primaryColor}
         />
       </Pressable>
       <View style={styles.headerContainer}>
@@ -52,24 +54,24 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
           style={styles.image}
           source={require('../../../assets/Planix.png')}
         />
-        <Text style={styles.text}>Create an account to get started</Text>
+        <Text style={[styles.text, { color: theme.textColor }]}>Create an account to get started</Text>
         <View style={styles.inputContainer}>
           <Input
-            style={styles.input}
+            style={[styles.input, { color: theme.textColor, borderColor: theme.inputBorderColor, backgroundColor: theme.inputBackgroundColor }]}
             placeholder="Email"
             keyboardType="email-address"
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
           <Input
-            style={styles.input}
+            style={[styles.input, { color: theme.textColor, borderColor: theme.inputBorderColor, backgroundColor: theme.inputBackgroundColor }]}
             placeholder="Password"
             secureTextEntry={true}
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
           <Input
-            style={styles.input}
+            style={[styles.input, { color: theme.textColor, borderColor: theme.inputBorderColor, backgroundColor: theme.inputBackgroundColor }]}
             placeholder="Confirm Password"
             secureTextEntry={true}
             value={confirmPassword}
@@ -93,7 +95,6 @@ export default SignupScreen;
 const styles = StyleSheet.create({
   container: {
     ...globalStyles.container,
-    backgroundColor: useDynamicColors().topBackgroundColor,
     justifyContent: 'flex-start',
   },
   close: {
@@ -111,7 +112,6 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   text: {
-    color: useDynamicColors().textColor,
     fontSize: 18,
     marginBottom: 20,
   },
@@ -123,15 +123,7 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     fontSize: 20,
-    color: useDynamicColors().textColor,
-    borderColor: useDynamicColors().inputBorderColor,
-    backgroundColor: useDynamicColors().inputBackgroundColor,
     paddingHorizontal: 20,
-  },
-  signupLink: {
-    color: useDynamicColors().primaryColor,
-    fontSize: 16,
-    marginTop: 10,
   },
   buttonContainer: {
     paddingHorizontal: 10,

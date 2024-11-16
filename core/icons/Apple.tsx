@@ -2,13 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
 import { IconProps } from './models/IconProps';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 
 const Apple = ({
   size = 40,
   hasFill = true,
   fill = '#000',
-  color = useDynamicColors().textColor,
 }: IconProps) => {
   return (
     <View>

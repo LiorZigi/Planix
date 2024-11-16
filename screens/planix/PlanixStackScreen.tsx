@@ -1,32 +1,33 @@
 import { Image, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import { PlanixParamList, PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 import PlanixInnerScreen from './PlanixInnerScreen';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../store/selectors/themeSelectors';
 
 const Drawer = createDrawerNavigator<PlanixParamList>();
 
 export default function PlanixStackScreen({ navigation, route }: PlanixScreenProps) {
-  const dynamicColors = useDynamicColors();
+  const theme = useSelector(selectTheme);
 
   return (
     <Drawer.Navigator
       initialRouteName={PlanixRoutes.PlanixInner}
       screenOptions={{
         headerStyle: {
-          backgroundColor: dynamicColors.topBackgroundColor,
+          backgroundColor: theme.topBackgroundColor,
           shadowColor: 'transparent',
         },
         headerTitle() {
           return <Image style={styles.logo} source={require('../../assets/Planix.png')} />;
         },
         drawerContentStyle: {
-          backgroundColor: dynamicColors.inputBackgroundColor,
+          backgroundColor: theme.inputBackgroundColor,
         },
         drawerLabelStyle: {
-          color: dynamicColors.textColor,
+          color: theme.textColor,
         },
-        drawerActiveTintColor: dynamicColors.textColor,
+        drawerActiveTintColor: theme.textColor,
 
       }}
     >

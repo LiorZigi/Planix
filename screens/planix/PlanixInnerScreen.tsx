@@ -1,25 +1,26 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { PlanixParamList, PlanixRoutes, PlanixScreenProps } from "../../core/@planix/types";
 import PlanixScreen from "./PlanixScreen";
-import { useDynamicColors } from "../../styles/useDynamicColors";
 import ChooseProduct from "./components/ChooseProduct";
+import { selectTheme } from "../../store/selectors/themeSelectors";
+import { useSelector } from "react-redux";
 
 const Stack = createNativeStackNavigator<PlanixParamList>();
 
 export default function PlanixInnerScreen({ navigation, route }: PlanixScreenProps) {
-  const dynamicColors = useDynamicColors();
+  const theme = useSelector(selectTheme);
 
   return (
     <Stack.Navigator initialRouteName={PlanixRoutes.Planix}
       screenOptions={{
         contentStyle: {
-          backgroundColor: dynamicColors.topBackgroundColor,
+          backgroundColor: theme.topBackgroundColor,
         },
         headerStyle: {
-          backgroundColor: dynamicColors.topBackgroundColor,
+          backgroundColor: theme.topBackgroundColor,
         },
         headerTitleStyle: {
-          color: dynamicColors.textColor,
+          color: theme.textColor,
         },
       }}
     >

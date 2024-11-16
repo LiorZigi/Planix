@@ -1,14 +1,17 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NewEventScreen from './NewEventScreen';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import { PlanixParamList, PlanixRoutes } from '../../core/@planix/types';
 import EventSetupStackScreen from '../event-setup/EventSetupStackScreen';
+import { selectTheme } from '../../store/selectors/themeSelectors';
+import { useSelector } from 'react-redux';
 
 const Stack = createNativeStackNavigator<PlanixParamList>();
 
 const NewEventStackScreen = () => {
+  const theme = useSelector(selectTheme);
+
   return (
-    <Stack.Navigator initialRouteName={PlanixRoutes.CreateEvent}>
+    <Stack.Navigator initialRouteName={PlanixRoutes.CreateEvent} screenOptions={{ headerShadowVisible: false }}>
       <Stack.Screen
         name={PlanixRoutes.CreateEvent}
         component={NewEventScreen}
@@ -20,9 +23,9 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'transparentModal',
           headerTitle: PlanixRoutes.Barbecue,
-          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerTitleStyle: { color: theme.textColor },
           headerStyle: {
-            backgroundColor: useDynamicColors().topBackgroundColor,
+            backgroundColor: theme.topBackgroundColor,
           },
         }}
       />
@@ -32,9 +35,9 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'transparentModal',
           headerTitle: PlanixRoutes.Birthday,
-          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerTitleStyle: { color: theme.textColor },
           headerStyle: {
-            backgroundColor: useDynamicColors().topBackgroundColor,
+            backgroundColor: theme.topBackgroundColor,
           },
         }}
       />
@@ -44,9 +47,9 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'transparentModal',
           headerTitle: PlanixRoutes.Camping,
-          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerTitleStyle: { color: theme.textColor },
           headerStyle: {
-            backgroundColor: useDynamicColors().topBackgroundColor,
+            backgroundColor: theme.topBackgroundColor,
           },
         }}
       />
@@ -56,9 +59,9 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'transparentModal',
           headerTitle: PlanixRoutes.Custom,
-          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerTitleStyle: { color: theme.textColor },
           headerStyle: {
-            backgroundColor: useDynamicColors().topBackgroundColor,
+            backgroundColor: theme.topBackgroundColor,
           },
         }}
       />
@@ -68,9 +71,9 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'transparentModal',
           headerTitle: PlanixRoutes.Picnic,
-          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerTitleStyle: { color: theme.textColor },
           headerStyle: {
-            backgroundColor: useDynamicColors().topBackgroundColor,
+            backgroundColor: theme.topBackgroundColor,
           },
         }}
       />
@@ -80,9 +83,9 @@ const NewEventStackScreen = () => {
         options={{
           presentation: 'transparentModal',
           headerTitle: PlanixRoutes.BachelorParty,
-          headerTitleStyle: { color: useDynamicColors().textColor },
+          headerTitleStyle: { color: theme.textColor },
           headerStyle: {
-            backgroundColor: useDynamicColors().topBackgroundColor,
+            backgroundColor: theme.topBackgroundColor,
           },
         }}
       />

@@ -2,8 +2,9 @@ import { StyleSheet, Pressable, Text } from 'react-native';
 import BackgroundGradient from '../../../styles/GradientBackground';
 import { globalStyles } from '../../../styles/constants';
 import { Octicons } from '@expo/vector-icons';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
 import { PlanixNavigationProp, PlanixRoutes } from '../../@planix/types';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 interface EventCardProps {
   style?: object | object[];
@@ -21,6 +22,8 @@ const EventCard = ({
   eventEmoji,
   index,
 }: EventCardProps) => {
+  const theme = useSelector(selectTheme);
+
   const handlePress = (route: any): void => {
     navigation.navigate(route, { eventType: eventName });
   };
@@ -31,8 +34,8 @@ const EventCard = ({
       style={styles.cardShadow}
     >
       <BackgroundGradient
-        topColor={useDynamicColors().inputBackgroundColor}
-        bottomColor={useDynamicColors().inputBackgroundColor}
+        topColor={theme.inputBackgroundColor}
+        bottomColor={theme.inputBackgroundColor}
         style={[styles.card, style]}
       >
         {eventName === PlanixRoutes.Custom ? (
@@ -40,14 +43,14 @@ const EventCard = ({
             <Octicons
               name="plus"
               size={50}
-              color={useDynamicColors().textColor}
+              color={theme.textColor}
             />
-            <Text style={styles.cardText}>{eventName}</Text>
+            <Text style={[styles.cardText, { color: theme.textColor }]}>{eventName}</Text>
           </>
         ) : (
           <>
             <Text style={styles.eventEmojis}>{eventEmoji}</Text>
-            <Text style={styles.cardText}>{eventName}</Text>
+            <Text style={[styles.cardText, { color: theme.textColor }]}>{eventName}</Text>
           </>
         )}
 

@@ -1,7 +1,8 @@
 import { ReactNode, useState } from 'react';
 import { View, Text, Animated, Pressable, StyleSheet } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 interface ExpansionPanelProps {
   title: string;
@@ -10,6 +11,7 @@ interface ExpansionPanelProps {
 }
 
 const ExpansionPanel = ({ title, children, onPress }: ExpansionPanelProps) => {
+  const theme = useSelector(selectTheme);
   const [expanded, setExpanded] = useState(false);
   const [animation] = useState(new Animated.Value(0));
 
@@ -37,7 +39,7 @@ const ExpansionPanel = ({ title, children, onPress }: ExpansionPanelProps) => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.inputBackgroundColor }]}>
       <Pressable onPress={toggleExpansion}>
         <Animated.View
           style={{
@@ -45,11 +47,11 @@ const ExpansionPanel = ({ title, children, onPress }: ExpansionPanelProps) => {
             justifyContent: 'space-between',
           }}
         >
-          <Text style={styles.title}>{title}</Text>
+          <Text style={[styles.title, { color: theme.textColor }]}>{title}</Text>
           <Octicons
             name={expanded ? 'chevron-up' : 'chevron-down'}
             size={20}
-            color={useDynamicColors().textColor}
+            color={theme.textColor}
           />
         </Animated.View>
       </Pressable>
@@ -64,7 +66,6 @@ export default ExpansionPanel;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: useDynamicColors().inputBackgroundColor,
     borderRadius: 12,
     marginBottom: 16,
     padding: 14,
@@ -73,11 +74,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: useDynamicColors().textColor,
   },
   content: {
     flex: 1,
     fontSize: 18,
-    color: useDynamicColors().textColor,
   },
 });

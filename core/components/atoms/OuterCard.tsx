@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import { useDynamicColors } from "../../../styles/useDynamicColors";
 import { globalStyles } from "../../../styles/constants";
 
 interface OuterCardProps {
@@ -18,7 +17,6 @@ export default function OuterCard({ children, style }: OuterCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    ...globalStyles.container,
     borderRadius: 20,
   },
 });

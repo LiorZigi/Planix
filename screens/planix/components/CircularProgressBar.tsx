@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
+import { useSelector } from 'react-redux';
 
 interface CircularProgressBarProps {
   progress: number;
 }
 
 function CircularProgressBar({ progress }: CircularProgressBarProps) {
+  const theme = useSelector(selectTheme);
   const animatedValue = useRef<Animated.Value>(new Animated.Value(0)).current;
   const [strokeDashoffset, setStrokeDashoffset] = useState<number>(0);
   const circumference = 2 * Math.PI * 50; // 50 is the radius
@@ -46,7 +48,7 @@ function CircularProgressBar({ progress }: CircularProgressBarProps) {
           cx="50%"
           cy="50%"
           r="50"
-         //  stroke="#e6e6e6"
+          //  stroke="#e6e6e6"
           strokeWidth="15"
           fill="none"
         />
@@ -63,7 +65,7 @@ function CircularProgressBar({ progress }: CircularProgressBarProps) {
           strokeDashoffset={strokeDashoffset}
         />
       </Svg>
-      <Text style={styles.percentageText}>{`${progress}%`}</Text>
+      <Text style={[styles.percentageText, { color: theme.textColor }]}>{`${progress}%`}</Text>
     </View>
   );
 }
@@ -76,7 +78,6 @@ const styles = StyleSheet.create({
   percentageText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: useDynamicColors().textColor,
     position: 'absolute',
   },
 });

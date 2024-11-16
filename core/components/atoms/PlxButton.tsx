@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Text, StyleSheet, Pressable, Animated } from 'react-native';
 import PlanixIcon from '../../icons/PlanixIcon';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 interface PlxButtonProps {
   title?: string;
@@ -18,14 +19,15 @@ interface PlxButtonProps {
 const PlxButton = ({
   title,
   style,
-  color = useDynamicColors().primaryColor,
-  textColor = useDynamicColors().textColor,
+  color,
+  textColor,
   pill = true,
   icon,
   iconColor,
   disabled,
   onPress,
 }: PlxButtonProps) => {
+  const theme = useSelector(selectTheme);
   const animation = useRef(new Animated.Value(disabled ? 0 : 1)).current;
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const PlxButton = ({
 
   const backgroundColor = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: ['gray', color],
+    outputRange: ['gray', color || theme.primaryColor],
   });
 
   return (

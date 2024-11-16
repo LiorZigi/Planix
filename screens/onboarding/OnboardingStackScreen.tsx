@@ -14,7 +14,6 @@ export default function OnboardingStackScreen() {
         component={FirstOnboarding}
         options={{
           headerShown: false,
-          presentation: 'transparentModal',
         }}
       />
       <Stack.Screen

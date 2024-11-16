@@ -1,18 +1,18 @@
-import { View, TextInput, StyleSheet } from 'react-native';
-import { globalStyles } from '../../../styles/constants';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { View, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import Input from '../../../core/components/atoms/Input';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 export default function SearchBar() {
-  const dynamicColors = useDynamicColors();
+  const theme = useSelector(selectTheme);
   const [search, setSearch] = useState<string>('');
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.topBackgroundColor }]}>
       <Input
         value={search}
-        style={styles.input}
+        style={[styles.input, { color: theme.textColor, borderColor: theme.inputBorderColor, backgroundColor: theme.inputBackgroundColor }]}
         placeholder="Search"
         onChangeText={setSearch}
       />
@@ -24,16 +24,13 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 50,
-    backgroundColor: useDynamicColors().topBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
   },
   input: {
     width: '100%',
     height: 40,
-    backgroundColor: useDynamicColors().inputBackgroundColor,
     borderRadius: 10,
     paddingLeft: 10,
-    color: useDynamicColors().textColor,
   },
 });

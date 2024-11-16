@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors, globalStyles } from '../../styles/constants';
+import { globalStyles } from '../../styles/constants';
 import CircularProgressBar from './components/CircularProgressBar';
 import {
   createMaterialTopTabNavigator,
@@ -9,30 +9,31 @@ import ActivityTab from './components/ActivityTab';
 import MembersTab from './components/MembersTab';
 import AboutTab from './components/AboutTab';
 import Animated from 'react-native-reanimated';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import PlxButton from '../../core/components/atoms/PlxButton';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../store/selectors/themeSelectors';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function PlanixScreen({ navigation, route }: PlanixScreenProps<PlanixRoutes.Planix>) {
+  const theme = useSelector(selectTheme);
   const { groupName, members, notifyMembers, data } = route.params;
-  const dynamicColors = useDynamicColors();
   const screenOptions: MaterialTopTabNavigationOptions = {
     tabBarLabelStyle: { fontSize: 16, textTransform: 'capitalize' },
     tabBarStyle: {
-      backgroundColor: dynamicColors.topBackgroundColor,
-      shadowColor: dynamicColors.borderColor,
+      backgroundColor: theme.topBackgroundColor,
+      shadowColor: theme.borderColor,
       shadowOpacity: 0.2,
       shadowRadius: 15,
       elevation: 5,
     },
     tabBarIndicatorStyle: {
-      backgroundColor: dynamicColors.textColor,
+      backgroundColor: theme.textColor,
       height: 0.8,
       opacity: 0.5,
     },
-    tabBarActiveTintColor: dynamicColors.textColor,
+    tabBarActiveTintColor: theme.textColor,
   };
 
   const handleChooseProduct = (): void => {
@@ -51,7 +52,7 @@ export default function PlanixScreen({ navigation, route }: PlanixScreenProps<Pl
             <Text
               style={{
                 ...globalStyles.text,
-                color: colors.textColor,
+                color: theme.textColor,
                 fontSize: 16,
                 alignSelf: 'center',
               }}
@@ -60,8 +61,8 @@ export default function PlanixScreen({ navigation, route }: PlanixScreenProps<Pl
             </Text>
           </View>
           <View style={{ alignSelf: 'center', flexDirection: 'row', gap: 10 }}>
-            <PlxButton title="Choose Product" onPress={handleChooseProduct} textColor={dynamicColors.buttonTextColor} />
-            <PlxButton title="  Add  " textColor={dynamicColors.buttonTextColor} />
+            <PlxButton title="Choose Product" onPress={handleChooseProduct} textColor={theme.buttonTextColor} />
+            <PlxButton title="  Add  " textColor={theme.buttonTextColor} />
           </View>
           <Animated.View style={styles.tabsContainer}>
             <Tab.Navigator screenOptions={screenOptions}>

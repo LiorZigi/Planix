@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, Keyboard } from 'react-native';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 interface InputProps {
   value: string | number;
@@ -25,6 +26,7 @@ const Input = ({
   textAlign,
   style,
 }: InputProps) => {
+  const theme = useSelector(selectTheme);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -38,7 +40,7 @@ const Input = ({
 
   return (
     <TextInput
-      placeholderTextColor={useDynamicColors().textInfoColor}
+      placeholderTextColor={theme.textInfoColor}
       autoFocus={autoFocus}
       value={value.toString()}
       onChangeText={onChangeText}
@@ -49,7 +51,7 @@ const Input = ({
       textAlign={textAlign}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      style={[styles.input, isFocused && styles.focused, style]}
+      style={[styles.input, { backgroundColor: theme.inputBackgroundColor }, isFocused && styles.focused, style]}
     />
   );
 };
@@ -57,18 +59,12 @@ const Input = ({
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    color: useDynamicColors().textColor,
     fontSize: 18,
-    // borderColor: useDynamicColors().inputBorderColor,
-    backgroundColor: useDynamicColors().inputBackgroundColor,
-    // borderWidth: 1,
     borderRadius: 12,
     paddingHorizontal: 10,
     marginBottom: 10,
   },
-  focused: {
-    // borderColor: 'blue',
-  },
+  focused: {},
 });
 
 export default Input;

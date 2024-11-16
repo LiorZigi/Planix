@@ -1,12 +1,14 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Text, StyleSheet, ScrollView } from 'react-native';
 import { globalStyles } from '../../../styles/constants';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 export default function MembersTab() {
+  const theme = useSelector(selectTheme);
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Members</Text>
-      <Text style={styles.description}>
+      <Text style={[styles.title, { color: theme.textColor }]}>Members</Text>
+      <Text style={[styles.description, { color: theme.textColor }]}>
         Planix is a mobile application that helps you plan and organize events
         with your friends and family. You can create groups, add members, and
         plan events together. Planix also helps you create shopping lists and
@@ -18,16 +20,14 @@ export default function MembersTab() {
 
 const styles = StyleSheet.create({
   container: {
-   ...globalStyles.container
+    ...globalStyles.container
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: useDynamicColors().textColor,
   },
   description: {
     fontSize: 16,
-    color: useDynamicColors().textColor,
   },
 });

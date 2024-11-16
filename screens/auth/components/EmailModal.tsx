@@ -12,7 +12,6 @@ import PlxButton from '../../../core/components/atoms/PlxButton';
 import Input from '../../../core/components/atoms/Input';
 import PlanixIcon from '../../../core/icons/PlanixIcon';
 import { useEffect, useState } from 'react';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -23,12 +22,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
 import { fetchUser, setUser } from '../../../store/slices/userSlice';
 import { PlanixRoutes } from '../../../core/@planix/types';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 interface EmailModalProps {
   navigation: any;
 }
 
 const EmailModal = ({ navigation }: EmailModalProps) => {
+  const theme = useSelector(selectTheme);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { user, status } = useSelector((state: RootState) => state.user);
@@ -65,12 +66,12 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.topBackgroundColor }]}>
       <Pressable style={styles.close} onPress={() => navigation.goBack()}>
         <PlanixIcon
           iconName="close"
           size={32}
-          color={useDynamicColors().primaryColor}
+          color={theme.primaryColor}
         />
       </Pressable>
       <View style={styles.headerContainer}>
@@ -78,12 +79,12 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
           style={styles.image}
           source={require('../../../assets/login.png')}
         />
-        <Text style={styles.text}>
+        <Text style={[styles.text, { color: theme.textColor }]}>
           Log in easily with your Email and Password!
         </Text>
         <View style={styles.inputContainer}>
           <Input
-            style={styles.input}
+            style={[styles.input, { color: theme.textColor, borderColor: theme.inputBorderColor, backgroundColor: theme.inputBackgroundColor }]}
             placeholder="Email"
             keyboardType="email-address"
             value={email}
@@ -98,7 +99,7 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
           />
         </View>
         <Pressable onPress={handleSignUp}>
-          <Text style={styles.signupLink}>Not a user yet? Sign up!</Text>
+          <Text style={[styles.signupLink, { color: theme.primaryColor }]}>Not a user yet? Sign up!</Text>
         </Pressable>
       </View>
       <KeyboardAvoidingView
@@ -122,7 +123,6 @@ export default EmailModal;
 const styles = StyleSheet.create({
   container: {
     ...globalStyles.container,
-    backgroundColor: useDynamicColors().topBackgroundColor,
     justifyContent: 'flex-end',
     paddingVertical: 55,
   },
@@ -154,14 +154,10 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     fontSize: 20,
-    color: useDynamicColors().textColor,
-    borderColor: useDynamicColors().inputBorderColor,
-    backgroundColor: useDynamicColors().inputBackgroundColor,
     paddingHorizontal: 20,
   },
   signupLink: {
     fontSize: 18,
-    color: useDynamicColors().primaryColor,
   },
   button: {
     width: '100%',

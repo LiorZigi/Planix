@@ -1,6 +1,7 @@
 import { Platform, View } from 'react-native';
 import PlanixIcon from '../../icons/PlanixIcon';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
+import { useSelector } from 'react-redux';
 
 interface TabIconProps {
   focused: boolean;
@@ -8,6 +9,8 @@ interface TabIconProps {
 }
 
 export default function TabIcon({ focused, icon }: TabIconProps) {
+  const theme = useSelector(selectTheme);
+
   return (
     <View
       style={{
@@ -20,8 +23,8 @@ export default function TabIcon({ focused, icon }: TabIconProps) {
         size={32}
         color={
           focused
-            ? useDynamicColors().primaryColor
-            : useDynamicColors().textColor
+            ? theme.primaryColor
+            : theme.textColor
         }
       />
     </View>

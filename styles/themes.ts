@@ -1,0 +1,36 @@
+
+export const lightTheme = {
+  primaryColor: '#687EFF',
+  successColor: '#2ecc71',
+  textColor: 'black',
+  buttonTextColor: '#f6f7f9',
+  textInfoColor: '#808080',
+  headerColor: '#f5f6fa',
+  modalHeaderColor: '#f5f6fa',
+  cardTopColor: '#ffffff',
+  cardBottomColor: '#ffffff',
+  topBackgroundColor: '#f5f6fa',
+  bottomBackgroundColor: '#f5f6fa',
+  bottomTabsColor: '#f5f6fa',
+  borderColor: '#343435',
+  inputBackgroundColor: '#e0e9f8',
+  inputBorderColor: '#343435',
+};
+
+export const darkTheme = {
+  primaryColor: '#58c4dc',
+  successColor: '#2ecc71',
+  textColor: '#f6f7f9',
+  buttonTextColor: '#404756',
+  textInfoColor: 'gray',
+  headerColor: '#16181d',
+  modalHeaderColor: '#16181d',
+  cardTopColor: '#23272f',
+  cardBottomColor: '#23272f',
+  topBackgroundColor: '#16181d',
+  bottomBackgroundColor: '#16181d',
+  bottomTabsColor: '#151718',
+  borderColor: '#404756',
+  inputBackgroundColor: '#333a45',
+  inputBorderColor: '#343435',
+};

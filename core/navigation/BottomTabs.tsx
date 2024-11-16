@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, Platform, StatusBar, StyleSheet } from 'react-native';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import PlanixIcon from '../icons/PlanixIcon';
 import TabIcon from '../components/atoms/TabIcon';
 import TabLabel from '../components/atoms/TabLabel';
@@ -8,15 +7,17 @@ import NewEventStackScreen from '../../screens/new-event/NewEventStackScreen';
 import DiscoverScreen from '../../screens/discover/DiscoverScreen';
 import FavoritesScreen from '../../screens/favorites/FavoritesScreen';
 import ProfileStackNav from '../../screens/profile/ProfileStackNav';
+import { selectTheme } from '../../store/selectors/themeSelectors';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabs() {
-  const dynamicColors = useDynamicColors();
+  const theme = useSelector(selectTheme);
 
   return (
     <>
-      <StatusBar animated backgroundColor={dynamicColors.textColor} />
+      <StatusBar animated backgroundColor={theme.textColor} />
       <Tab.Navigator
         screenOptions={{
           animation: 'shift',
@@ -24,13 +25,13 @@ export default function BottomTabs() {
           tabBarStyle: {
             display: 'flex',
             elevation: 5,
-            backgroundColor: dynamicColors.bottomTabsColor,
-            borderTopColor: dynamicColors.borderColor,
+            backgroundColor: theme.bottomTabsColor,
+            borderTopColor: theme.borderColor,
             // borderTopWidth: 0,
           },
           headerStyle: {
             height: 100,
-            backgroundColor: dynamicColors.headerColor,
+            backgroundColor: theme.headerColor,
           },
           headerShadowVisible: false,
         }}
@@ -40,7 +41,7 @@ export default function BottomTabs() {
           component={DiscoverScreen}
           options={{
             headerTitleStyle: {
-              color: dynamicColors.textColor,
+              color: theme.textColor,
             },
             tabBarIcon: ({ focused }: any) => (
               <TabIcon focused={focused} icon={'map'} />
@@ -81,7 +82,7 @@ export default function BottomTabs() {
           component={FavoritesScreen}
           options={{
             headerTitleStyle: {
-              color: dynamicColors.textColor,
+              color: theme.textColor,
             },
             tabBarIcon: ({ focused }: any) => (
               <TabIcon focused={focused} icon={'heart'} />
@@ -98,7 +99,7 @@ export default function BottomTabs() {
               return <Image style={styles.logo} source={require('../../assets/Planix.png')} />;
             },
             headerTitleStyle: {
-              color: dynamicColors.textColor,
+              color: theme.textColor,
             },
             tabBarIcon: ({ focused }: any) => (
               <TabIcon focused={focused} icon={'user'} />
@@ -112,19 +113,6 @@ export default function BottomTabs() {
 }
 
 const styles = StyleSheet.create({
-  createButton: {
-    top: Platform.OS === 'ios' ? -18 : -18,
-    width: Platform.OS === 'ios' ? 60 : 60,
-    height: Platform.OS === 'ios' ? 60 : 60,
-    borderRadius: Platform.OS === 'ios' ? 20 : 20,
-
-    backgroundColor: useDynamicColors().topBackgroundColor,
-    borderColor: useDynamicColors().borderColor,
-    borderWidth: 2.5,
-    opacity: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   logo: {
     width: 100,
     height: 40,

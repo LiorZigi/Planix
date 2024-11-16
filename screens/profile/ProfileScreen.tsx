@@ -9,7 +9,6 @@ import {
 import { globalStyles } from '../../styles/constants';
 import SectionButton from './components/SectionButton';
 import BackgroundGradient from '../../styles/GradientBackground';
-import { useDynamicColors } from '../../styles/useDynamicColors';
 import { getAuth, signOut } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../../store/slices/userSlice';
@@ -17,11 +16,12 @@ import { RootState, userState } from '../../store/store';
 import { extractNameFromEmail } from '../../core/utils/extractEmail';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 import OuterCard from '../../core/components/atoms/OuterCard';
+import { selectTheme } from '../../store/selectors/themeSelectors';
 
 export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRoutes.Profile>) {
+  const theme = useSelector(selectTheme);
   const auth = getAuth();
   const { user }: userState = useSelector((state: RootState) => state.user);
-  const dynamicColors = useDynamicColors();
   const dispatch = useDispatch();
 
   const handlePress = (): void => {
@@ -40,12 +40,12 @@ export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRo
   };
   return (
     <BackgroundGradient
-      topColor={dynamicColors.topBackgroundColor}
-      bottomColor={dynamicColors.bottomBackgroundColor}
+      topColor={theme.topBackgroundColor}
+      bottomColor={theme.bottomBackgroundColor}
     >
       <ScrollView style={globalStyles.container}>
         <View>
-          <Text style={styles.title}>
+          <Text style={[styles.title, { color: theme.textColor }]}>
             Hi{' '}
             {!user?.displayName
               ? extractNameFromEmail(user?.email)
@@ -54,36 +54,36 @@ export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRo
           </Text>
         </View>
         <View style={styles.avatarSection}>
-          <Pressable style={styles.avatarContainer}>
+          <Pressable style={[styles.avatarContainer, { backgroundColor: theme.textColor }]}>
             <Image
               style={styles.avatar}
               source={require('../../assets/avatar.jpg')}
             />
           </Pressable>
-          <Text style={styles.username}>
+          <Text style={[styles.username, { color: theme.textColor }]}>
             {!user?.displayName
               ? extractNameFromEmail(user?.email)
               : user?.displayName}
           </Text>
         </View>
 
-        <OuterCard style={styles.buttonSection}>
-          <Text style={styles.sections}>Settings</Text>
+        <OuterCard style={[styles.buttonSection, { backgroundColor: theme.cardTopColor }]}>
+          <Text style={[styles.sections, { color: theme.textColor }]}>Settings</Text>
           <SectionButton
             label="Account"
             iconLeft="settings"
             iconRight="chevronRight"
-            color={dynamicColors.textColor}
+            color={theme.textColor}
             iconLeftSize={30}
             iconRightSize={36}
             onPress={handlePress}
           />
-          <Text style={styles.sections}>Account</Text>
+          <Text style={[styles.sections, { color: theme.textColor }]}>Account</Text>
           <SectionButton
             label="Payment methods"
             iconLeft="creditCard"
             iconRight="chevronRight"
-            color={dynamicColors.textColor}
+            color={theme.textColor}
             iconLeftSize={30}
             iconRightSize={36}
           ></SectionButton>
@@ -91,7 +91,7 @@ export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRo
             label="Logout"
             iconLeft="logout"
             iconRight="chevronRight"
-            color={dynamicColors.textColor}
+            color={theme.textColor}
             iconLeftSize={30}
             iconRightSize={36}
             onPress={handleLogout}
@@ -105,7 +105,6 @@ export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRo
 const styles = StyleSheet.create({
   container: globalStyles.container,
   title: {
-    color: useDynamicColors().textColor,
     fontSize: 30,
     fontWeight: '900',
     marginBottom: 30,
@@ -119,14 +118,12 @@ const styles = StyleSheet.create({
   buttonSection: {
     flex: 2,
     marginTop: 20,
-    backgroundColor: useDynamicColors().cardTopColor,
   },
   avatarContainer: {
     width: 70,
     height: 70,
     borderRadius: 50,
     overflow: 'hidden',
-    backgroundColor: useDynamicColors().textColor,
   },
   avatar: {
     width: '100%',
@@ -135,14 +132,12 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: useDynamicColors().textColor,
     alignSelf: 'center',
   },
   sections: {
     marginTop: 20,
     fontWeight: 'bold',
     fontSize: 20,
-    color: useDynamicColors().textColor,
   },
   tasksStatus: {
     flexDirection: 'row',

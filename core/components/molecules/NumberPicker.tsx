@@ -2,8 +2,9 @@ import { View, StyleSheet } from 'react-native';
 import PlusButton from '../atoms/PlusButton';
 import MinusButton from '../atoms/MinusButton';
 import Input from '../atoms/Input';
-import { useDynamicColors } from '../../../styles/useDynamicColors';
 import { useState } from 'react';
+import { selectTheme } from '../../../store/selectors/themeSelectors';
+import { useSelector } from 'react-redux';
 
 interface NumberPickerProps {
   value: number;
@@ -12,6 +13,7 @@ interface NumberPickerProps {
 }
 
 const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
+  const theme = useSelector(selectTheme);
   const [number, setNumber] = useState(value);
 
   const incrementNumber = () => {
@@ -30,7 +32,7 @@ const NumberPicker = ({ value, onValueChange, style }: NumberPickerProps) => {
         value={number}
         keyboardType="numeric"
         caretHidden={true}
-        style={styles.input}
+        style={[styles.input, { color: theme.textColor }]}
         onChangeText={(text) => onValueChange(parseInt(text, 10))}
       ></Input>
       <PlusButton onPress={incrementNumber} />
@@ -45,9 +47,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   input: {
-    color: useDynamicColors().textColor,
     textAlign: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
+    fontSize: 24,
+    minWidth: 50,
   },
 });
