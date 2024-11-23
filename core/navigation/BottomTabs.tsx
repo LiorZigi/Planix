@@ -9,8 +9,9 @@ import FavoritesScreen from '../../screens/favorites/FavoritesScreen';
 import ProfileStackNav from '../../screens/profile/ProfileStackNav';
 import { selectTheme } from '../../store/selectors/themeSelectors';
 import { useSelector } from 'react-redux';
+import { PlanixParamList, PlanixRoutes } from '../@planix/types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<PlanixParamList>();
 
 export default function BottomTabs() {
   const theme = useSelector(selectTheme);
@@ -37,7 +38,7 @@ export default function BottomTabs() {
         }}
       >
         <Tab.Screen
-          name="Discover"
+          name={PlanixRoutes.Discover}
           component={DiscoverScreen}
           options={{
             headerTitleStyle: {
@@ -51,7 +52,7 @@ export default function BottomTabs() {
         ></Tab.Screen>
 
         <Tab.Screen
-          name="Create"
+          name={PlanixRoutes.CreateEvent}
           component={NewEventStackScreen}
           options={{
             headerShown: false,
@@ -78,7 +79,7 @@ export default function BottomTabs() {
           }}
         ></Tab.Screen> */}
         <Tab.Screen
-          name="Favorites"
+          name={PlanixRoutes.Favorites}
           component={FavoritesScreen}
           options={{
             headerTitleStyle: {
@@ -92,7 +93,7 @@ export default function BottomTabs() {
         ></Tab.Screen>
 
         <Tab.Screen
-          name="ProfileScreen"
+          name={PlanixRoutes.Profile}
           component={ProfileStackNav}
           options={{
             headerTitle(props) {

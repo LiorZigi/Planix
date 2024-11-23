@@ -1,27 +1,28 @@
+import { PlanixRoutes } from '../../core/@planix/types';
 import { Event } from '../../models/Event';
 
 export const eventsTypes: Event[] = [
   {
-    name: 'Barbecue',
+    name: PlanixRoutes.Barbecue,
     emoji: '🥩',
   },
   {
-    name: 'Picnic',
+    name: PlanixRoutes.Picnic,
     emoji: '🍉',
   },
   {
-    name: 'Camping',
+    name: PlanixRoutes.Camping,
     emoji: '🏕️',
   },
   {
-    name: 'Birthday',
+    name: PlanixRoutes.Birthday,
     emoji: '🎉',
   },
   {
-    name: 'Bachelor Party',
+    name: PlanixRoutes.BachelorParty,
     emoji: '🍻',
   },
   {
-    name: 'Custom',
+    name: PlanixRoutes.Custom,
   },
 ];

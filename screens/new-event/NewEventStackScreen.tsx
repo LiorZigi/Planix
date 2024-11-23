@@ -1,17 +1,20 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NewEventScreen from './NewEventScreen';
-import { PlanixParamList, PlanixRoutes } from '../../core/@planix/types';
+import { PlanixParamList, PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 import EventSetupStackScreen from '../event-setup/EventSetupStackScreen';
 import { selectTheme } from '../../store/selectors/themeSelectors';
 import { useSelector } from 'react-redux';
 
 const Stack = createNativeStackNavigator<PlanixParamList>();
 
-const NewEventStackScreen = () => {
+const NewEventStackScreen = ({ navigation }: PlanixScreenProps) => {
   const theme = useSelector(selectTheme);
 
   return (
-    <Stack.Navigator initialRouteName={PlanixRoutes.CreateEvent} screenOptions={{ headerShadowVisible: false }}>
+    <Stack.Navigator initialRouteName={PlanixRoutes.CreateEvent} screenOptions={{
+      headerShown: false,
+    }}
+    >
       <Stack.Screen
         name={PlanixRoutes.CreateEvent}
         component={NewEventScreen}

@@ -1,8 +1,7 @@
 // selectors/themeSelectors.js
 import { createSelector } from 'reselect';
 import { RootState } from '../store';
-import { darkTheme } from '../../styles/themes';
-import { lightTheme } from '../../styles/themes';
+import { darkTheme, lightTheme } from '../../styles/themes';
 
 // Basic selector to get the theme mode
 export const selectThemeMode = (state: RootState) => state.theme.mode;

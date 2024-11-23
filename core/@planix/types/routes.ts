@@ -14,6 +14,7 @@ export type PlanixParamList = {
   ChooseProduct: any;
   CreateEvent: any;
   Discover: any;
+  Favorites: any;
   Profile: any;
   Account: any;
   Settings: any;
@@ -48,6 +49,7 @@ export enum PlanixRoutes {
   PlanixInner = 'PlanixInner',
   ChooseProduct = 'ChooseProduct',
   CreateEvent = 'CreateEvent',
+  Favorites = 'Favorites',
   Discover = 'Discover',
   Profile = 'Profile',
   Account = 'Account',

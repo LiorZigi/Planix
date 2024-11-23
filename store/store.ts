@@ -1,15 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { membersCounterSlice } from './slices/membersCounter';
-import { userSlice } from './slices/userSlice';
 import { User } from 'firebase/auth';
-import themeReducer from './reducers/themeReducer';
+import rootReducer from '.';
 
 export type AppDispatch = typeof store.dispatch;
-export interface RootState {
-  membersCounter: membersCounterState;
-  user: userState;
-  theme: themeState;
-}
+export type RootState = ReturnType<typeof store.getState>;
 
 export interface membersCounterState {
   value: number;
@@ -26,11 +20,7 @@ export interface themeState {
 }
 
 export const store = configureStore({
-  reducer: {
-    membersCounter: membersCounterSlice.reducer,
-    user: userSlice.reducer,
-    theme: themeReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

@@ -20,9 +20,10 @@ import {
 } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
-import { fetchUser, setUser } from '../../../store/slices/userSlice';
+import { setUser } from '../../../store/slices/userSlice';
 import { PlanixRoutes } from '../../../core/@planix/types';
 import { selectTheme } from '../../../store/selectors/themeSelectors';
+import { selectUser, selectUserStatus } from '../../../store/selectors/userSelectors';
 
 interface EmailModalProps {
   navigation: any;
@@ -32,13 +33,11 @@ const EmailModal = ({ navigation }: EmailModalProps) => {
   const theme = useSelector(selectTheme);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { user, status } = useSelector((state: RootState) => state.user);
+  const user = useSelector(selectUser);
+  const status = useSelector(selectUserStatus);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchUser());
-    }
     if (user) {
       navigation.navigate(PlanixRoutes.CreateEvent);
     }

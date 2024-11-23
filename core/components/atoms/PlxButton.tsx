@@ -61,7 +61,7 @@ const PlxButton = ({
 
       >
         {icon && <PlanixIcon iconName={icon} size={20} color={iconColor} />}
-        <Text style={{ ...styles.buttonText, color: textColor }}>{title}</Text>
+        <Text style={{ ...styles.buttonText, color: theme.buttonTextColor }}>{title}</Text>
       </Pressable>
     </Animated.View>
   );
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 

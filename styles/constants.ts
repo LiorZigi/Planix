@@ -8,7 +8,7 @@ const globalStyles = StyleSheet.create({
     padding: 16,
   },
   text: {
-    fontSize: 18,
+    fontSize: 20,
   },
   button: {
     borderRadius: 8,

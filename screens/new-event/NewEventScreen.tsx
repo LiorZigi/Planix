@@ -6,7 +6,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useEffect, useState } from 'react';
 import { useFetchEvents } from '../../core/hooks/useFetchEvents';
 import { Event } from '../../models/Event';
-import { PlanixScreenProps } from '../../core/@planix/types';
+import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 import OuterCard from '../../core/components/atoms/OuterCard';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../../store/selectors/themeSelectors';
@@ -42,14 +42,13 @@ export default function NewEventScreen({ navigation }: PlanixScreenProps) {
           Choose the kind of event you'd like to create
         </Text>
         <Animated.View entering={FadeInDown} >
-          <OuterCard style={[styles.eventsContainer, { backgroundColor: theme.cardTopColor }]}>
+          <OuterCard style={[styles.eventsContainer, { backgroundColor: theme.outerCardColor }]}>
             {events.map((event, index) => (
               <EventCard
                 key={index}
                 index={index}
                 navigation={navigation}
                 eventName={event.name}
-                eventEmoji={event.emoji}
                 style={[styles.cardContainer, { borderColor: theme.borderColor }]}
               />
             ))}

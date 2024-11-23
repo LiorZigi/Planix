@@ -5,13 +5,13 @@ import { Octicons } from '@expo/vector-icons';
 import { PlanixNavigationProp, PlanixRoutes } from '../../@planix/types';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../../../store/selectors/themeSelectors';
+import PlanixIcon from '../../icons/PlanixIcon';
 
 interface EventCardProps {
   style?: object | object[];
   navigation: PlanixNavigationProp;
   onPress?: () => void;
   eventName: PlanixRoutes;
-  eventEmoji?: string;
   index?: number;
 }
 
@@ -19,7 +19,6 @@ const EventCard = ({
   style,
   navigation,
   eventName,
-  eventEmoji,
   index,
 }: EventCardProps) => {
   const theme = useSelector(selectTheme);
@@ -31,11 +30,11 @@ const EventCard = ({
   return (
     <Pressable
       onPress={handlePress.bind(null, eventName)}
-      style={styles.cardShadow}
+      style={[styles.cardShadow]}
     >
       <BackgroundGradient
-        topColor={theme.inputBackgroundColor}
-        bottomColor={theme.inputBackgroundColor}
+        topColor={theme.cardBottomColor}
+        bottomColor={theme.cardBottomColor}
         style={[styles.card, style]}
       >
         {eventName === PlanixRoutes.Custom ? (
@@ -49,7 +48,7 @@ const EventCard = ({
           </>
         ) : (
           <>
-            <Text style={styles.eventEmojis}>{eventEmoji}</Text>
+            <PlanixIcon iconName={eventName.toLowerCase()} color={theme.textColor} size={50} />
             <Text style={[styles.cardText, { color: theme.textColor }]}>{eventName}</Text>
           </>
         )}
@@ -70,9 +69,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 3,
-    // elevation: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 7,
+    elevation: 5,
   },
   cardText: {
     ...globalStyles.text,

@@ -17,11 +17,12 @@ import { extractNameFromEmail } from '../../core/utils/extractEmail';
 import { PlanixRoutes, PlanixScreenProps } from '../../core/@planix/types';
 import OuterCard from '../../core/components/atoms/OuterCard';
 import { selectTheme } from '../../store/selectors/themeSelectors';
+import { auth } from '../../firebase';
+import { selectUser } from '../../store/selectors/userSelectors';
 
 export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRoutes.Profile>) {
   const theme = useSelector(selectTheme);
-  const auth = getAuth();
-  const { user }: userState = useSelector((state: RootState) => state.user);
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const handlePress = (): void => {
@@ -67,7 +68,7 @@ export default function ProfileScreen({ navigation }: PlanixScreenProps<PlanixRo
           </Text>
         </View>
 
-        <OuterCard style={[styles.buttonSection, { backgroundColor: theme.cardTopColor }]}>
+        <OuterCard style={[styles.buttonSection, { backgroundColor: theme.outerCardColor }]}>
           <Text style={[styles.sections, { color: theme.textColor }]}>Settings</Text>
           <SectionButton
             label="Account"
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
   buttonSection: {
     flex: 2,
     marginTop: 20,
+    padding: 16,
   },
   avatarContainer: {
     width: 70,

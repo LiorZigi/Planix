@@ -2,8 +2,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../../styles/constants';
 import { selectTheme } from '../../store/selectors/themeSelectors';
 import { useSelector } from 'react-redux';
+import { PlanixScreenProps } from '../../core/@planix/types';
 
-export default function FavoritesScreen() {
+export default function FavoritesScreen({ navigation }: PlanixScreenProps) {
   const theme = useSelector(selectTheme);
 
   return (
