@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectTheme } from "../../../store/selectors/themeSelectors";
 import PlanixIcon from "../../icons/PlanixIcon";
+import Checkbox from "./CheckBox";
 
 interface ProductCardProps {
   product: string;
@@ -38,9 +39,9 @@ export default function ProductCard({ product, mode, claimed, total, style }: Pr
       )}
       {mode === 'compact' && (
         <View style={[styles.containerCompact, { backgroundColor: theme.inputBackgroundColor }, style]}>
-          <PlanixIcon iconName={product} size={40} color={theme.textColor} />
-          <Text style={{ ...globalStyles.text, color: theme.textColor }}>{product}</Text>
-          <NumberPicker value={amount} onValueChange={handleAmountChange} />
+          <PlanixIcon iconName={product} size={50} color={theme.textColor} />
+          <Text style={{ ...globalStyles.text, color: theme.textColor }}>{product.charAt(0).toUpperCase() + product.slice(1)}</Text>
+          <Checkbox />
         </View>
       )}
     </>

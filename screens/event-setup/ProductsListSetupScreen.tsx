@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
-import Animated, { FadeInLeft, FadeOut, FlipInEasyX, FlipOutEasyX } from "react-native-reanimated";
+import Animated, { FadeInLeft, FadeOut, FadeOutLeft, FadeOutRight, FlipInEasyX, FlipOutEasyX } from "react-native-reanimated";
 import { PlanixRoutes, PlanixScreenProps } from "../../core/@planix/types";
 import { useFetchProducts } from "../../core/hooks/useFetchProducts";
 import { Products, Product } from "../../mocks/products/products";
@@ -12,6 +12,7 @@ import { selectTheme } from "../../store/selectors/themeSelectors";
 
 const PAGE_SIZE = 6;
 const EXIT_ANIMATION_DURATION = 500;
+const BASE_DELAY = 100;
 
 export default function ProductsListSetupScreen({ navigation, route }: PlanixScreenProps<PlanixRoutes.ProductsListSetupScreen>) {
   const theme = useSelector(selectTheme);
@@ -56,15 +57,15 @@ export default function ProductsListSetupScreen({ navigation, route }: PlanixScr
       <View style={styles.productsContainer}>
         {displayedProducts.map((product, index) => (
           <Animated.View
-            entering={FlipInEasyX.duration(500).delay(index * 200)}
-            exiting={FadeOut.duration(200).delay(index * 200)}
+            entering={FadeInLeft.duration(500).delay(index * BASE_DELAY)}
+            exiting={FadeOutLeft.duration(EXIT_ANIMATION_DURATION)}
             key={product.id}
             style={styles.productCardWrapper}
           >
             <ProductCard style={styles.productCard} product={product.name} mode="compact" />
           </Animated.View>
         ))}
-        <Animated.View style={styles.buttonWrapper} entering={FadeInLeft.duration(900).delay(2000)}>
+        <Animated.View style={styles.buttonWrapper} entering={FadeInLeft.duration(900).delay(1000)}>
           <PlxButton title='Next' onPress={handleNext} disabled={isTransitioning} />
         </Animated.View>
       </View>

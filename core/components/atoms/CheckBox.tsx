@@ -5,21 +5,23 @@ import { useSelector } from 'react-redux';
 import { selectTheme } from '../../../store/selectors/themeSelectors';
 
 interface CheckboxProps {
-  checked: boolean;
+  checked?: boolean;
   onPress?: () => void;
   style?: object;
 }
 
-const Checkbox = ({ checked, onPress, style }: CheckboxProps) => {
+const Checkbox = ({ checked = false, onPress, style }: CheckboxProps) => {
   const theme = useSelector(selectTheme);
   const [scale] = useState(new Animated.Value(checked ? 1 : 0));
+  const [isChecked, setIsChecked] = useState(checked);
 
   const handlePress = () => {
     Animated.timing(scale, {
-      toValue: checked ? 0 : 1,
+      toValue: isChecked ? 0 : 1,
       duration: 200,
       useNativeDriver: true,
     }).start();
+    setIsChecked(!isChecked);
 
     onPress && onPress();
   };
